@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
+import { StyleClassModule } from 'primeng/styleclass';
+import { RippleModule } from 'primeng/ripple';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +19,8 @@ import { AvatarModule } from 'primeng/avatar';
     SidebarModule,
     ButtonModule,
     AvatarModule,
+    StyleClassModule,
+    RippleModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
