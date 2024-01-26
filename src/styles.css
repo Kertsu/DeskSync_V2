@@ -13,6 +13,11 @@ body{ margin:0}
 
 @media (min-width: 1280px){
     #login{
-        width: 28% !important;
+        width: 25% !important;
+    }
+
+    #login-wrapper{
+        place-content: center;
+        height: 100vh;
     }
 }
