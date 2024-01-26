@@ -4,8 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import {ReactiveFormsModule} from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
 
+import { AppLayoutModule } from './layout/app.layout.module';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
@@ -20,11 +21,10 @@ import { InputTextModule } from 'primeng/inputtext';
 
 import { LoginComponent } from './pages/login/login.component';
 import { FormLinksComponent } from './components/form-links/form-links.component';
-import { LayoutComponent } from './layout/layout/layout.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, FormLinksComponent, LayoutComponent, SidebarComponent],
+  declarations: [AppComponent, LoginComponent, FormLinksComponent, DashboardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,8 +37,12 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     TableModule,
     HttpClientModule,
     ProgressSpinnerModule,
-    MessagesModule,ReactiveFormsModule,InputGroupModule
-    ,InputGroupAddonModule,InputTextModule
+    MessagesModule,
+    ReactiveFormsModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+    InputTextModule,
+    AppLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
