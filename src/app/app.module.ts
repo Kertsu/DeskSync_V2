@@ -20,9 +20,11 @@ import { InputTextModule } from 'primeng/inputtext';
 
 import { LoginComponent } from './pages/login/login.component';
 import { FormLinksComponent } from './components/form-links/form-links.component';
+import { LayoutComponent } from './layout/layout/layout.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, FormLinksComponent],
+  declarations: [AppComponent, LoginComponent, FormLinksComponent, LayoutComponent, SidebarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

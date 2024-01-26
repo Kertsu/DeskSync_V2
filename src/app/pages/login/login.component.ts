@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +8,6 @@ import { Message } from 'primeng/api';
 })
 export class LoginComponent {
   isSubmitted: boolean = false;
-  messages!: Message[];
 
   isLoading: boolean = false;
 
