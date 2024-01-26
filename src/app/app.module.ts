@@ -4,14 +4,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms'
 
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { StyleClassModule } from 'primeng/styleclass';
 import { RippleModule } from 'primeng/ripple';
-import {TableModule} from 'primeng/table'
-
+import { TableModule } from 'primeng/table';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { MessagesModule } from 'primeng/messages';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { InputTextModule } from 'primeng/inputtext';
 
 import { LoginComponent } from './pages/login/login.component';
 
@@ -25,7 +30,12 @@ import { LoginComponent } from './pages/login/login.component';
     ButtonModule,
     AvatarModule,
     StyleClassModule,
-    RippleModule, TableModule, HttpClientModule
+    RippleModule,
+    TableModule,
+    HttpClientModule,
+    ProgressSpinnerModule,
+    MessagesModule,ReactiveFormsModule,InputGroupModule
+    ,InputGroupAddonModule,InputTextModule
   ],
   providers: [],
   bootstrap: [AppComponent],
