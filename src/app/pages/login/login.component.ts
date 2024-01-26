@@ -8,17 +8,8 @@ import { Message } from 'primeng/api';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  showPassword!: boolean;
   isSubmitted: boolean = false;
   messages!: Message[];
-  lis = [
-    { label: 'Terms', routerLink: '/terms' },
-    { label: 'Features', routerLink: '/features' },
-    { label: 'Privacy', routerLink: '/privacy' },
-    { label: 'About', routerLink: '/about' },
-    { label: 'Contact', routerLink: '/contact' },
-    { label: 'API', routerLink: '/api' }
-];
 
   isLoading: boolean = false;
 

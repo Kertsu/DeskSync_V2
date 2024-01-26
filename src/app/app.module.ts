@@ -19,9 +19,10 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
 
 import { LoginComponent } from './pages/login/login.component';
+import { FormLinksComponent } from './components/form-links/form-links.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, FormLinksComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

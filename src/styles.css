@@ -5,7 +5,14 @@
 @import "primeng/resources/primeng.css";
 
 html{
-    font-size: 14px;
+    font-size: 12px;
 }
 
 body{ margin:0}
+
+
+@media (min-width: 1280px){
+    #login{
+        width: 28% !important;
+    }
+}

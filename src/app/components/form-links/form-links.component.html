@@ -1,0 +1,11 @@
+<ul class="flex w-full justify-content-around align-items-center p-0">
+    @for (li of lis; track $index) {
+    <li class="list-none white-space-normal">
+      <a
+        class="text-gray-500 no-underline hover:underline"
+        routerLink="{{ li.routerLink }}"
+        >{{ li.label }}</a
+      >
+    </li>
+    }
+  </ul>
