@@ -17,14 +17,14 @@
         <!-- <button class="p-link layout-topbar-button">
             <i class="pi pi-calendar"></i>
             <span>Calendar</span>
-        </button>
-        <button class="p-link layout-topbar-button">
-            <i class="pi pi-user"></i>
-            <span>Profile</span>
         </button> -->
+        <button class="p-link layout-topbar-button" >
+            <i class="pi pi-bell" pBadge value="3" badgeClass="text-md"></i>
+            <span class="piText">Notifications</span>
+        </button>
         <button class="p-link layout-topbar-button" (click)="changeTheme(isDark? 'lara-light' : 'lara-dark')">
             <i class="pi pi-{{isDark? 'sun': 'moon'}}"></i>
-            <span>Theme</span>
+            <span class="piText">Theme</span>
         </button>
     </div>
 </div>

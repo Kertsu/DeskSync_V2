@@ -137,6 +137,11 @@ a {
 .layout-topbar .layout-topbar-button i {
   font-size: 1.5rem;
 }
+.layout-topbar .layout-topbar-button span:not(.piText) {
+  font-size: 1rem;
+  display: inline-block;
+}
+
 .layout-topbar .layout-topbar-button span {
   font-size: 1rem;
   display: none;

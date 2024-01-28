@@ -18,10 +18,18 @@ import { MessagesModule } from 'primeng/messages';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
+import { BadgeModule } from 'primeng/badge';
+
+import {  SocketIoModule , SocketIoConfig} from 'ngx-socket-io';
 
 import { LoginComponent } from './pages/login/login.component';
 import { FormLinksComponent } from './components/form-links/form-links.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+
+const config: SocketIoConfig = {
+  // url: 'https://hdbsv2.onrender.com', options: {transports: ['websocket']}
+  url: 'http://localhost:8000', options: {transports: ['websocket']}
+}
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, FormLinksComponent, DashboardComponent],
@@ -43,6 +51,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     InputGroupAddonModule,
     InputTextModule,
     AppLayoutModule,
+    BadgeModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [],
   bootstrap: [AppComponent],
