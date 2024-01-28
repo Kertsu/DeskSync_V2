@@ -15,6 +15,10 @@ body {
   margin: 0;
 } */
 
+body{
+  position: relative;  
+}
+
 #logo-text,
 #super-text {
   background: -webkit-linear-gradient(

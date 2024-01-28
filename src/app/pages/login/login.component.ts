@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { WebService } from '../../services/web.service';
-import { Message } from 'primeng/api/message';
 
 @Component({
   selector: 'app-login',
@@ -10,8 +9,8 @@ import { Message } from 'primeng/api/message';
 })
 export class LoginComponent {
   isSubmitted: boolean = false;
-  messages!: Message[];
   isLoading: boolean = false;
+  errorMessage!: string;
 
   constructor(private fb: FormBuilder, private webService: WebService) {}
 
@@ -35,6 +34,7 @@ export class LoginComponent {
       },
       error: (error) => {
         console.log(error);
+        this.errorMessage = error.error.error
         this.isSubmitted = false;
         this.isLoading = false;
       },
