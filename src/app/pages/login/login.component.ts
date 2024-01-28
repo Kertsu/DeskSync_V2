@@ -41,12 +41,4 @@ export class LoginComponent {
     });
   }
 
-  checkValid(field: string) {
-    return (
-      this.loginForm.get(field)?.hasError('required') &&
-      (this.loginForm.get(field)?.dirty ||
-        this.loginForm.get(field)?.touched ||
-        this.isSubmitted)
-    );
-  }
 }
