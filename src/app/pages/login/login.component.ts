@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { WebService } from '../../services/web.service';
 import { SocketService } from '../../services/socket.service';
-import { forkJoin } from 'rxjs';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   isSubmitted: boolean = false;
@@ -17,9 +16,9 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private webService: WebService,
     private socketService: SocketService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.socketService.connect();
 
@@ -27,7 +26,8 @@ export class LoginComponent {
       next: (res: any) => {
         this.userService.setUser(res);
         this.changeStatus(false);
-      },
+        this.router.navigate(['/hdbsv2/dashboard'])
+      }
     });
 
     this.socketService.listen('loginFailed').subscribe({

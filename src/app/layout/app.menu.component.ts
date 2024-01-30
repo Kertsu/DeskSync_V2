@@ -1,6 +1,7 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
+import { UserService } from '../services/user.service';
 
 @Component({
     selector: 'app-menu',
@@ -10,16 +11,16 @@ export class AppMenuComponent implements OnInit {
 
     model: any[] = [];
 
-    constructor(public layoutService: LayoutService) { }
+    constructor(public layoutService: LayoutService, private userService: UserService) { }
 
     ngOnInit() {
         this.model = [
             {
                 label: 'Home',
                 items: [
-                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
-                    { label: 'Book', icon: 'pi pi-fw pi-book', routerLink: ['/book'] },
-                    { label: 'Logs', icon: 'pi pi-fw pi-comments', routerLink: ['/logs'] },
+                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['dashboard'] },
+                    { label: 'Book', icon: 'pi pi-fw pi-book', routerLink: ['book'] },
+                    { label: 'Logs', icon: 'pi pi-fw pi-comments', routerLink: ['logs'] },
                     {
                         label: 'Manage',
                         icon: 'pi pi-fw pi-cog',
@@ -27,22 +28,22 @@ export class AppMenuComponent implements OnInit {
                             {
                                 label: 'Users',
                                 icon: 'pi pi-fw pi-users',
-                                routerLink: ['/manage-users']
+                                routerLink: ['manage-users']
                             },
                             {
                                 label: 'Reservations',
                                 icon: 'pi pi-fw pi-book',
-                                routerLink: ['/manage-reservations']
+                                routerLink: ['manage-reservations']
                             },
                             {
                                 label: 'Desks',
                                 icon: 'pi pi-fw pi-desktop',
-                                routerLink: ['/manage-desks']
+                                routerLink: ['manage-desks']
                             },
                             {
                                 label: 'Unavailabilites',
                                 icon: 'pi pi-fw pi-ban',
-                                routerLink: ['/manage-unavailabilities']
+                                routerLink: ['manage-unavailabilities']
                             },
                         ]
                     },
@@ -58,12 +59,12 @@ export class AppMenuComponent implements OnInit {
                             {
                                 label: 'FAQs',
                                 icon: 'pi pi-fw pi-question',
-                                routerLink: ['/faqs']
+                                routerLink: ['faqs']
                             },
                             {
                                 label: 'Guides',
                                 icon: 'pi pi-fw pi-tablet',
-                                routerLink: ['/guides']
+                                routerLink: ['guides']
                             },
                         ]
                     },
@@ -72,10 +73,11 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Account',
                 items: [
-                    { label: 'My profile', icon: 'pi pi-fw pi-user', routerLink: ['/profile'], badge: 'NEW' },
-                    { label: 'Logout', icon: 'pi pi-fw pi-sign-out'},
+                    { label: 'My profile', icon: 'pi pi-fw pi-user', routerLink: ['profile'], badge: 'NEW' },
+                    { label: 'Logout', icon: 'pi pi-fw pi-sign-out', onclick: this.userService.logout},
                 ]
             },
         ];
     }
+
 }

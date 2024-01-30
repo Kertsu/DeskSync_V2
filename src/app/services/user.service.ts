@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface User{
   id: string
@@ -13,7 +14,7 @@ interface User{
 })
 export class UserService {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   setUser(user:User){
     localStorage.setItem('hdbsv2User', JSON.stringify(user))
@@ -27,5 +28,7 @@ export class UserService {
   logout(){
     localStorage.removeItem('hdbsv2User')
     localStorage.removeItem('hdbsv2Token')
+
+    this.router.navigate(['/login'])
   }
 }
