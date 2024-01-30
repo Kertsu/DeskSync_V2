@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppLayoutModule } from './layout/app.layout.module';
@@ -25,6 +25,7 @@ import {  SocketIoModule , SocketIoConfig} from 'ngx-socket-io';
 import { LoginComponent } from './pages/login/login.component';
 import { FormLinksComponent } from './components/form-links/form-links.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { authInterceptor } from './services/token.interceptor';
 
 const config: SocketIoConfig = {
   // url: 'https://hdbsv2.onrender.com', options: {transports: ['websocket']}
@@ -54,7 +55,7 @@ const config: SocketIoConfig = {
     BadgeModule,
     SocketIoModule.forRoot(config)
   ],
-  providers: [],
+  providers: [provideHttpClient(withInterceptors([authInterceptor]))],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
