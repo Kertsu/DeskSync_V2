@@ -26,6 +26,11 @@ import { LoginComponent } from './pages/login/login.component';
 import { FormLinksComponent } from './components/form-links/form-links.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { authInterceptor } from './services/token.interceptor';
+import { LandingComponent } from './pages/landing/landing.component';
+import { FeaturesComponent } from './pages/features/features.component';
+import { AboutComponent } from './pages/about/about.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
+import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
 
 const config: SocketIoConfig = {
   // url: 'https://hdbsv2.onrender.com', options: {transports: ['websocket']}
@@ -33,7 +38,7 @@ const config: SocketIoConfig = {
 }
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, FormLinksComponent, DashboardComponent],
+  declarations: [AppComponent, LoginComponent, FormLinksComponent, DashboardComponent, LandingComponent, FeaturesComponent, AboutComponent, PrivacyPolicyComponent, TermsAndConditionsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
