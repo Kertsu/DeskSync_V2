@@ -31,6 +31,15 @@ import { FeaturesComponent } from './pages/features/features.component';
 import { AboutComponent } from './pages/about/about.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
+import { BookComponent } from './pages/book/book.component';
+import { LogsComponent } from './pages/logs/logs.component';
+import { ManageUsersComponent } from './pages/manage-users/manage-users.component';
+import { ManageReservationsComponent } from './pages/manage-reservations/manage-reservations.component';
+import { ManageDesksComponent } from './pages/manage-desks/manage-desks.component';
+import { ManageDeskUnavailabilitiesComponent } from './pages/manage-desk-unavailabilities/manage-desk-unavailabilities.component';
+import { FaqsComponent } from './pages/faqs/faqs.component';
+import { GuidesComponent } from './pages/guides/guides.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const config: SocketIoConfig = {
   // url: 'https://hdbsv2.onrender.com', options: {transports: ['websocket']}
@@ -38,7 +47,7 @@ const config: SocketIoConfig = {
 }
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, FormLinksComponent, DashboardComponent, LandingComponent, FeaturesComponent, AboutComponent, PrivacyPolicyComponent, TermsAndConditionsComponent],
+  declarations: [AppComponent, LoginComponent, FormLinksComponent, DashboardComponent, LandingComponent, FeaturesComponent, AboutComponent, PrivacyPolicyComponent, TermsAndConditionsComponent, BookComponent, LogsComponent, ManageUsersComponent, ManageReservationsComponent, ManageDesksComponent, ManageDeskUnavailabilitiesComponent, FaqsComponent, GuidesComponent, ProfileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
