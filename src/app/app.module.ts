@@ -40,6 +40,9 @@ import { ManageDeskUnavailabilitiesComponent } from './pages/manage-desk-unavail
 import { FaqsComponent } from './pages/faqs/faqs.component';
 import { GuidesComponent } from './pages/guides/guides.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { Step1Component } from './components/step-1/step-1.component';
+import { Step2Component } from './components/step-2/step-2.component';
+import { Step3Component } from './components/step-3/step-3.component';
 
 const config: SocketIoConfig = {
   // url: 'https://hdbsv2.onrender.com', options: {transports: ['websocket']}
@@ -47,7 +50,7 @@ const config: SocketIoConfig = {
 }
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, FormLinksComponent, DashboardComponent, LandingComponent, FeaturesComponent, AboutComponent, PrivacyPolicyComponent, TermsAndConditionsComponent, BookComponent, LogsComponent, ManageUsersComponent, ManageReservationsComponent, ManageDesksComponent, ManageDeskUnavailabilitiesComponent, FaqsComponent, GuidesComponent, ProfileComponent],
+  declarations: [AppComponent, LoginComponent, FormLinksComponent, DashboardComponent, LandingComponent, FeaturesComponent, AboutComponent, PrivacyPolicyComponent, TermsAndConditionsComponent, BookComponent, LogsComponent, ManageUsersComponent, ManageReservationsComponent, ManageDesksComponent, ManageDeskUnavailabilitiesComponent, FaqsComponent, GuidesComponent, ProfileComponent, Step1Component, Step2Component, Step3Component],
   imports: [
     BrowserModule,
     AppRoutingModule,
