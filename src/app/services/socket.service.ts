@@ -15,4 +15,12 @@ export class SocketService {
     return this.socket.fromEvent(event)
   }
 
+  connect(){
+    this.socket.connect()
+  }
+
+  disconnect(){
+    this.socket.disconnect()
+  }
+
 }
