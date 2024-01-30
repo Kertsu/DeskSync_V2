@@ -19,6 +19,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
 import { BadgeModule } from 'primeng/badge';
+import {OverlayPanelModule} from 'primeng/overlaypanel'
 
 import {  SocketIoModule , SocketIoConfig} from 'ngx-socket-io';
 
@@ -70,6 +71,7 @@ const config: SocketIoConfig = {
     InputTextModule,
     AppLayoutModule,
     BadgeModule,
+    OverlayPanelModule,
     SocketIoModule.forRoot(config)
   ],
   providers: [provideHttpClient(withInterceptors([authInterceptor]))],

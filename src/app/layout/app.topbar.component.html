@@ -19,12 +19,16 @@
             <span>Calendar</span>
         </button> -->
         <button class="p-link layout-topbar-button" >
-            <i class="pi pi-bell" pBadge value="3" badgeClass="text-md"></i>
+            <i class="pi pi-bell" pBadge value="3"></i>
             <span class="piText">Notifications</span>
         </button>
         <button class="p-link layout-topbar-button" (click)="changeTheme(isDark? 'lara-light' : 'lara-dark')">
             <i class="pi pi-{{isDark? 'sun': 'moon'}}"></i>
             <span class="piText">Theme</span>
+        </button>
+        <button class="p-link layout-topbar-button" (click)="logout()" >
+            <i class="pi pi-sign-out"></i>
+            <span class="piText">Logout</span>
         </button>
     </div>
 </div>

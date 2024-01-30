@@ -73,8 +73,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Account',
                 items: [
-                    { label: 'My profile', icon: 'pi pi-fw pi-user', routerLink: ['profile'], badge: 'NEW' },
-                    { label: 'Logout', icon: 'pi pi-fw pi-sign-out', onclick: this.userService.logout},
+                    { label: 'My profile', icon: 'pi pi-fw pi-user', routerLink: ['profile'] },
                 ]
             },
         ];

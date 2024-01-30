@@ -15,8 +15,14 @@ body {
   margin: 0;
 } */
 
-body{
-  position: relative;  
+body {
+  position: relative;
+}
+
+ul {
+  list-style: none;
+
+  margin: 0;
 }
 
 #logo-text,
