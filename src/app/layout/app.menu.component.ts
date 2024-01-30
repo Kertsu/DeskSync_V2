@@ -27,22 +27,22 @@ export class AppMenuComponent implements OnInit {
                             {
                                 label: 'Users',
                                 icon: 'pi pi-fw pi-users',
-                                routerLink: ['/auth/login']
+                                routerLink: ['/manage-users']
                             },
                             {
                                 label: 'Reservations',
                                 icon: 'pi pi-fw pi-book',
-                                routerLink: ['/auth/error']
+                                routerLink: ['/manage-reservations']
                             },
                             {
                                 label: 'Desks',
                                 icon: 'pi pi-fw pi-desktop',
-                                routerLink: ['/auth/error']
+                                routerLink: ['/manage-desks']
                             },
                             {
                                 label: 'Unavailabilites',
                                 icon: 'pi pi-fw pi-ban',
-                                routerLink: ['/auth/error']
+                                routerLink: ['/manage-unavailabilities']
                             },
                         ]
                     },
@@ -58,12 +58,12 @@ export class AppMenuComponent implements OnInit {
                             {
                                 label: 'FAQs',
                                 icon: 'pi pi-fw pi-question',
-                                routerLink: ['/auth/login']
+                                routerLink: ['/faqs']
                             },
                             {
                                 label: 'Guides',
                                 icon: 'pi pi-fw pi-tablet',
-                                routerLink: ['/auth/error']
+                                routerLink: ['/guides']
                             },
                         ]
                     },
@@ -72,8 +72,8 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Account',
                 items: [
-                    { label: 'My profile', icon: 'pi pi-fw pi-user', routerLink: ['/blocks'], badge: 'NEW' },
-                    { label: 'Logout', icon: 'pi pi-fw pi-sign-out', url: ['https://www.primefaces.org/primeblocks-ng'], target: '_blank' },
+                    { label: 'My profile', icon: 'pi pi-fw pi-user', routerLink: ['/profile'], badge: 'NEW' },
+                    { label: 'Logout', icon: 'pi pi-fw pi-sign-out'},
                 ]
             },
         ];
