@@ -12,3 +12,12 @@
     <app-config></app-config>
     <div class="layout-mask"></div>
 </div>
+
+
+<p-messages
+  *ngIf="messages"
+  [(value)]="messages"
+  [enableService]="false"
+  [closable]="false"
+  class="fixed z-2"
+></p-messages>

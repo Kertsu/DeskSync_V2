@@ -47,3 +47,11 @@ ul {
     height: 100vh;
   }
 }
+
+
+/* DEEP */
+
+::ng-deep p-messages {
+  right:1.5rem;
+  bottom: 3.5rem;
+}

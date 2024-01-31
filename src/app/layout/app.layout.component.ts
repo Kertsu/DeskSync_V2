@@ -13,10 +13,13 @@ import { AppTopBarComponent } from './app.topbar.component';
 import { SocketService } from '../services/socket.service';
 import { UserService } from '../services/user.service';
 import { WebService } from '../services/web.service';
+import { Message } from 'primeng/api';
+import { MessageService } from '../utils/message.service';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './app.layout.component.html',
+  styleUrls: ['../../styles.css']
 })
 export class AppLayoutComponent implements OnDestroy, OnInit {
   overlayMenuOpenSubscription: Subscription;
@@ -24,6 +27,9 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
   menuOutsideClickListener: any;
 
   profileMenuOutsideClickListener: any;
+
+  messages: Message[] = []
+  messageSubscription!: Subscription;
 
   @ViewChild(AppSidebarComponent) appSidebar!: AppSidebarComponent;
 
@@ -35,7 +41,8 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
     public router: Router,
     private socketService: SocketService,
     private userService: UserService,
-    private webService: WebService
+    private webService: WebService,
+    private messageService: MessageService
   ) {
     this.overlayMenuOpenSubscription =
       this.layoutService.overlayOpen$.subscribe(() => {
@@ -94,6 +101,13 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
         this.hideMenu();
         this.hideProfileMenu();
       });
+
+
+    this.messageSubscription = this.messageService.onAddMessage().subscribe(
+      (res) => {
+        this.messages = res;
+      }
+    )
   }
 
   hideMenu() {
@@ -164,6 +178,7 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
+
     this.socketService.connect();
 
     this.webService.getSelf().subscribe({
@@ -172,7 +187,7 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
       },
       error: (error) => {
         console.log(error);
-        // add message
+        this.messageService.addMessage('error', 'Error', 'Please try again', 3000)
       },
       complete: () => {
         const id = this.userService.getUser().id;
