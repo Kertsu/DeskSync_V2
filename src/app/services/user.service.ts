@@ -18,7 +18,10 @@ export class UserService {
 
   setUser(user:User){
     localStorage.setItem('hdbsv2User', JSON.stringify(user))
-    localStorage.setItem('hdbsv2Token', user.token)
+  }
+
+  setToken(token: string){
+    localStorage.setItem('hdbsv2Token', token)
   }
 
   getUser(){
