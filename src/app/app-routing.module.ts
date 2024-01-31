@@ -16,7 +16,7 @@ import { ManageReservationsComponent } from './pages/manage-reservations/manage-
 import { ManageDeskUnavailabilitiesComponent } from './pages/manage-desk-unavailabilities/manage-desk-unavailabilities.component';
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'login'},
+  {path: '', pathMatch: 'full', redirectTo: '/login'},
   {
     path: 'login',
     component: LoginComponent,

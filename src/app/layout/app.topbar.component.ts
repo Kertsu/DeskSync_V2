@@ -3,6 +3,7 @@ import { MenuItem } from 'primeng/api';
 import { LayoutService } from "./service/app.layout.service";
 import { UiService } from '../services/ui.service';
 import { UserService } from '../services/user.service';
+import { SocketService } from '../services/socket.service';
 
 @Component({
     selector: 'app-topbar',
@@ -20,7 +21,7 @@ export class AppTopBarComponent {
 
     @ViewChild('topbarmenu') menu!: ElementRef;
 
-    constructor(public layoutService: LayoutService, private uiService:UiService, private userService: UserService) { }
+    constructor(public layoutService: LayoutService, private uiService:UiService, private userService: UserService, private socketService: SocketService) { }
 
     changeTheme(theme: string){
         this.uiService.switchTheme(theme);
@@ -28,6 +29,7 @@ export class AppTopBarComponent {
     }
 
     logout(){
+        this.socketService.emit('die',{})
         this.userService.logout();
     }
 }
