@@ -19,7 +19,8 @@
             <span>Calendar</span>
         </button> -->
         <button class="p-link layout-topbar-button" >
-            <i class="pi pi-bell" pBadge value="3"></i>
+            <i class="pi pi-bell" *ngIf="notifications.length != 0" [value]="notifications.length.toString()" pBadge></i>
+            <i class="pi pi-bell" *ngIf="notifications.length == 0"></i>
             <span class="piText">Notifications</span>
         </button>
         <button class="p-link layout-topbar-button" (click)="changeTheme(isDark? 'lara-light' : 'lara-dark')">
