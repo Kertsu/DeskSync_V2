@@ -1,35 +1,60 @@
 <div class="layout-topbar">
-    <a class="layout-topbar-logo" routerLink="">
-        <!-- <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo"> -->
-        <img src="../../assets/images/desksync_logo.png" alt="">
-        <span>DeskSync</span>
-    </a>
+  <a class="layout-topbar-logo" routerLink="">
+    <!-- <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo"> -->
+    <img src="../../assets/images/desksync_logo.png" alt="" />
+    <span>DeskSync</span>
+  </a>
 
-    <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
-        <i class="pi pi-bars"></i>
-    </button>
+  <button
+    #menubutton
+    #targetEl
+    class="p-link layout-menu-button layout-topbar-button"
+    (click)="layoutService.onMenuToggle()"
+  >
+    <i class="pi pi-bars"></i>
+  </button>
 
-    <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
-        <i class="pi pi-ellipsis-v"></i>
-    </button>
+  <button
+    #topbarmenubutton
+    class="p-link layout-topbar-menu-button layout-topbar-button"
+    (click)="layoutService.showProfileSidebar()"
+  >
+    <i class="pi pi-ellipsis-v"></i>
+  </button>
 
-    <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
-        <!-- <button class="p-link layout-topbar-button">
+  <div
+    #topbarmenu
+    class="layout-topbar-menu"
+    [ngClass]="{
+      'layout-topbar-menu-mobile-active':
+        layoutService.state.profileSidebarVisible
+    }"
+  >
+    <!-- <button class="p-link layout-topbar-button">
             <i class="pi pi-calendar"></i>
             <span>Calendar</span>
         </button> -->
-        <button class="p-link layout-topbar-button" >
-            <i class="pi pi-bell" *ngIf="notifications.length != 0" [value]="notifications.length.toString()" pBadge></i>
-            <i class="pi pi-bell" *ngIf="notifications.length == 0"></i>
-            <span class="piText">Notifications</span>
-        </button>
-        <button class="p-link layout-topbar-button" (click)="changeTheme(isDark? 'lara-light' : 'lara-dark')">
-            <i class="pi pi-{{isDark? 'sun': 'moon'}}"></i>
-            <span class="piText">Theme</span>
-        </button>
-        <button class="p-link layout-topbar-button" (click)="logout()" >
-            <i class="pi pi-sign-out"></i>
-            <span class="piText">Logout</span>
-        </button>
-    </div>
+    <button class="p-link layout-topbar-button">
+      <i
+        class="pi pi-bell"
+        *ngIf="notifications.length != 0"
+        [value]="notifications.length.toString()"
+        pBadge
+      ></i>
+      <i class="pi pi-bell" *ngIf="notifications.length == 0"></i>
+      <span class="piText">Notifications</span>
+    </button>
+    <button
+      class="p-link layout-topbar-button"
+      (click)="changeTheme(isDark ? 'lara-light' : 'lara-dark')"
+    >
+      <i class="pi pi-{{ isDark ? 'sun' : 'moon' }}"></i>
+      <span class="piText">Theme</span>
+    </button>
+    <button class="p-link layout-topbar-button" (click)="logout()">
+      <i class="pi pi-sign-out"></i>
+      <span class="piText">Logout</span>
+    </button>
+  </div>
 </div>
+

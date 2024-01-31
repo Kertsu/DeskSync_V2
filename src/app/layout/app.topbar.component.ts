@@ -15,7 +15,7 @@ interface Notification {
 
 @Component({
     selector: 'app-topbar',
-    templateUrl: './app.topbar.component.html'
+    templateUrl: './app.topbar.component.html',
 })
 export class AppTopBarComponent implements OnInit{
 
@@ -35,7 +35,6 @@ export class AppTopBarComponent implements OnInit{
     constructor(public layoutService: LayoutService, private uiService:UiService, private userService: UserService, private socketService: SocketService, private webService: WebService) { }
 
     ngOnInit(): void {
-        this.getSelfNotifications({first: 0})
     }
 
     changeTheme(theme: string){
@@ -47,14 +46,5 @@ export class AppTopBarComponent implements OnInit{
         this.socketService.emit('die',{})
         this.userService.logout();
     }
-
-    getSelfNotifications(event: any){
-        this.webService.getNotifications(event.first || 0).subscribe({
-            next: (res:any)=>{
-                this.notifications = res.notifications
-                this.totalDocuments = res.totalDocuments
-            }, error: (error) => {
-            }
-        })
-    }
+    
 }

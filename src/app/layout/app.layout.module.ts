@@ -19,6 +19,8 @@ import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
 import {OverlayPanelModule} from 'primeng/overlaypanel'
 import { MessagesModule } from 'primeng/messages';
+import { TableModule } from 'primeng/table';
+
 
 @NgModule({
     declarations: [
@@ -31,6 +33,7 @@ import { MessagesModule } from 'primeng/messages';
     ],
     imports: [
         BrowserModule,
+        TableModule,
         FormsModule,
         HttpClientModule,
         BrowserAnimationsModule,
