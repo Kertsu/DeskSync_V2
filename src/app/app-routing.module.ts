@@ -14,15 +14,17 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ManageUsersComponent } from './pages/manage-users/manage-users.component';
 import { ManageReservationsComponent } from './pages/manage-reservations/manage-reservations.component';
 import { ManageDeskUnavailabilitiesComponent } from './pages/manage-desk-unavailabilities/manage-desk-unavailabilities.component';
+import { authGuard, guestGuard, hasAccess, isAdmin } from './shared/auth.guard';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/login'},
   {
     path: 'login',
-    component: LoginComponent,
+    component: LoginComponent, canActivate:[authGuard]
   },
   {
     path: 'hdbsv2',
+    canActivate: [guestGuard],
     component: AppLayoutComponent,
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
@@ -43,13 +45,13 @@ const routes: Routes = [
           },
         ],
       },
-      { path: 'logs', component: LogsComponent },
-      { path: 'manage-users', component: ManageUsersComponent },
-      { path: 'manage-reservations', component: ManageReservationsComponent },
-      { path: 'manage-desks', component: ManageReservationsComponent },
+      { path: 'logs', component: LogsComponent, canActivate: [isAdmin] },
+      { path: 'manage-users', component: ManageUsersComponent, canActivate: [isAdmin]  },
+      { path: 'manage-reservations', component: ManageReservationsComponent, canActivate: [hasAccess]  },
+      { path: 'manage-desks', component: ManageReservationsComponent, canActivate: [hasAccess]  },
       {
         path: 'manage-unavailabilities',
-        component: ManageDeskUnavailabilitiesComponent,
+        component: ManageDeskUnavailabilitiesComponent, canActivate: [hasAccess] 
       },
       { path: 'faqs', component: FaqsComponent },
       { path: 'guides', component: GuidesComponent },
