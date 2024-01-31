@@ -22,7 +22,7 @@ export class UserService {
   }
 
   getUser(){
-    return localStorage.getItem('hdbsv2User') || null
+    return JSON.parse((localStorage.getItem('hdbsv2User') || null) as string) 
   }
 
   logout(){

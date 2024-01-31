@@ -124,7 +124,7 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
     ngOnInit(): void {
         this.socketService.connect();
 
-        const id = JSON.parse(this.userService.getUser() as string).id
+        const id = this.userService.getUser().id
         console.log(id)
         this.socketService.emit('live', id)
     }
