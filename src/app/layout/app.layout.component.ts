@@ -190,13 +190,13 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
       error: (error) => {
         setTimeout(() => {
           this.isLoading = false;
-        }, 500);
+        }, 1000);
         if (error)
           this.messageService.addMessage(
             'error',
             'Error',
             'Token has expired',
-            3000
+            1500
           );
         setTimeout(() => {
           this.userService.logout();
@@ -206,8 +206,14 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
         setTimeout(() => {
           this.isLoading = false;
         }, 500);
-        const id = this.userService.getUser().id;
-        this.socketService.emit('live', id);
+
+        const user = this.userService.getUser()
+        const userData = {
+          id: user.id,
+          username: user.username,
+          avatar: user.avatar
+        }
+        this.socketService.emit('live', userData);
       },
     });
   }

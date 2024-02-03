@@ -20,6 +20,8 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
 import { BadgeModule } from 'primeng/badge';
 import {OverlayPanelModule} from 'primeng/overlaypanel'
+import { SpeedDialModule } from 'primeng/speeddial';
+import { ChartModule } from 'primeng/chart';
 
 import {  SocketIoModule , SocketIoConfig} from 'ngx-socket-io';
 
@@ -72,6 +74,7 @@ const config: SocketIoConfig = {
     AppLayoutModule,
     BadgeModule,
     OverlayPanelModule,
+    SpeedDialModule, ChartModule,
     SocketIoModule.forRoot(config)
   ],
   providers: [provideHttpClient(withInterceptors([authInterceptor]))],
