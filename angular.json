@@ -39,7 +39,9 @@
               {"input" :"src/app/themes/lara-light.css", "bundleName": "lara-light", "inject": false},
               {"input" :"src/app/themes/lara-dark.css", "bundleName": "lara-dark", "inject": false},
               {"input" :"src/app/themes/bootstrap4-light-blue.css", "bundleName": "bootstrap4-light-blue", "inject": false},
-              {"input" :"src/app/themes/bootstrap4-dark-blue.css", "bundleName": "bootstrap4-dark-blue", "inject": false}
+              {"input" :"src/app/themes/bootstrap4-dark-blue.css", "bundleName": "bootstrap4-dark-blue", "inject": false},
+              {"input" :"src/app/themes/bootstrap4-light-purple.css", "bundleName": "bootstrap4-light-purple", "inject": false},
+              {"input" :"src/app/themes/bootstrap4-dark-purple.css", "bundleName": "bootstrap4-dark-purple", "inject": false}
             ],
             "scripts": []
           },
