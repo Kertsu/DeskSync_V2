@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { LayoutService } from '../service/app.layout.service';
 import { MenuService } from '../app.menu.service';
+import { UiService } from '../../services/ui.service';
 
 @Component({
     selector: 'app-config',
@@ -13,7 +14,8 @@ export class AppConfigComponent {
 
     constructor(
         public layoutService: LayoutService,
-        public menuService: MenuService
+        public menuService: MenuService,
+        private uiService: UiService
     ) {}
 
     get visible(): boolean {
@@ -84,10 +86,10 @@ export class AppConfigComponent {
         this.layoutService.showConfigSidebar();
     }
 
-    changeTheme(theme: string, colorScheme: string) {
-        this.theme = theme;
-        this.colorScheme = colorScheme;
-    }
+    // changeTheme(theme: string, colorScheme: string) {
+    //     this.theme = theme;
+    //     this.colorScheme = colorScheme;
+    // }
 
     decrementScale() {
         this.scale--;
@@ -95,5 +97,9 @@ export class AppConfigComponent {
 
     incrementScale() {
         this.scale++;
+    }
+
+    changeTheme(theme: string){
+        this.uiService.switchTheme(theme);
     }
 }

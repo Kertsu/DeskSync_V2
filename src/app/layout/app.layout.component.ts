@@ -187,7 +187,8 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
       },
       error: (error) => {
         console.log(error);
-        this.messageService.addMessage('error', 'Error', 'Please try again', 3000)
+        if (error)this.messageService.addMessage('error', 'Error', 'Please try again', 3000)
+        this.userService.logout()
       },
       complete: () => {
         const id = this.userService.getUser().id;
