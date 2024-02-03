@@ -45,7 +45,8 @@
               {"input" :"src/app/themes/md-light-indigo.css", "bundleName": "md-light-indigo", "inject": false},
               {"input" :"src/app/themes/md-dark-indigo.css", "bundleName": "md-dark-indigo", "inject": false},
               {"input" :"src/app/themes/md-light-deeppurple.css", "bundleName": "md-light-deeppurple", "inject": false},
-              {"input" :"src/app/themes/md-dark-deeppurple.css", "bundleName": "md-dark-deeppurple", "inject": false}
+              {"input" :"src/app/themes/md-dark-deeppurple.css", "bundleName": "md-dark-deeppurple", "inject": false},
+              {"input" :"src/app/themes/tailwind-light.css", "bundleName": "tailwind-light", "inject": false}
             ],
             "scripts": []
           },
