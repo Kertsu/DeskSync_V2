@@ -20,7 +20,7 @@ import { AppLayoutComponent } from "./app.layout.component";
 import {OverlayPanelModule} from 'primeng/overlaypanel'
 import { MessagesModule } from 'primeng/messages';
 import { TableModule } from 'primeng/table';
-
+import { ProgressBarModule } from 'primeng/progressbar';
 
 @NgModule({
     declarations: [
@@ -46,7 +46,8 @@ import { TableModule } from 'primeng/table';
         RippleModule,
         RouterModule,
         OverlayPanelModule,
-        AppConfigModule
+        AppConfigModule,
+        ProgressBarModule
     ],
     exports: [AppLayoutComponent]
 })

@@ -19,7 +19,7 @@ import { MessageService } from '../utils/message.service';
 @Component({
   selector: 'app-layout',
   templateUrl: './app.layout.component.html',
-  styleUrls: ['../../styles.css']
+  styleUrls: ['../../styles.css'],
 })
 export class AppLayoutComponent implements OnDestroy, OnInit {
   overlayMenuOpenSubscription: Subscription;
@@ -28,8 +28,10 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
 
   profileMenuOutsideClickListener: any;
 
-  messages: Message[] = []
+  messages: Message[] = [];
   messageSubscription!: Subscription;
+
+  isLoading: boolean = false;
 
   @ViewChild(AppSidebarComponent) appSidebar!: AppSidebarComponent;
 
@@ -102,12 +104,11 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
         this.hideProfileMenu();
       });
 
-
-    this.messageSubscription = this.messageService.onAddMessage().subscribe(
-      (res) => {
+    this.messageSubscription = this.messageService
+      .onAddMessage()
+      .subscribe((res) => {
         this.messages = res;
-      }
-    )
+      });
   }
 
   hideMenu() {
@@ -178,6 +179,7 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
 
     this.socketService.connect();
 
@@ -186,13 +188,25 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
         this.userService.setUser(res.user);
       },
       error: (error) => {
-        console.log(error);
-        if (error)this.messageService.addMessage('error', 'Error', 'Please try again', 3000)
-        this.userService.logout()
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 500);
+        if (error)
+          this.messageService.addMessage(
+            'error',
+            'Error',
+            'Token has expired',
+            3000
+          );
+        setTimeout(() => {
+          this.userService.logout();
+        }, 1000);
       },
       complete: () => {
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 500);
         const id = this.userService.getUser().id;
-        console.log(id);
         this.socketService.emit('live', id);
       },
     });

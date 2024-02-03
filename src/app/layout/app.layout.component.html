@@ -1,18 +1,37 @@
-<div class="layout-wrapper" [ngClass]="containerClass">
-    <app-topbar></app-topbar>
-    <div class="layout-sidebar">
-        <app-sidebar></app-sidebar>
+<div class="layout-wrapper" [ngClass]="containerClass" *ngIf="!isLoading">
+  <app-topbar></app-topbar>
+  <div class="layout-sidebar">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="layout-main-container">
+    <div class="layout-main">
+      <router-outlet></router-outlet>
     </div>
-    <div class="layout-main-container">
-        <div class="layout-main">
-            <router-outlet></router-outlet>
-        </div>
-        <app-footer></app-footer>
-    </div>
-    <app-config></app-config>
-    <div class="layout-mask"></div>
+    <app-footer></app-footer>
+  </div>
+  <app-config></app-config>
+  <div class="layout-mask"></div>
 </div>
 
+<div
+  class="card absolute"
+  style="
+    display: flex;
+    inset: 0;
+    margin: auto;
+    flex-direction: column;
+    max-height: 120px;
+    justify-content: center;
+    max-width: 230px;
+  "
+  *ngIf="isLoading"
+>
+<h3>Hang on...</h3>
+  <p-progressBar
+    mode="indeterminate"
+    [style]="{ height: '6px' }"
+  ></p-progressBar>
+</div>
 
 <p-messages
   *ngIf="messages"
