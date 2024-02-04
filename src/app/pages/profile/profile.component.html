@@ -1,1 +1,5 @@
-<p>profile works!</p>
+
+<div class="card">
+    <p-avatar image="{{userService.getUser().avatar}}" size="xlarge" shape="circle"></p-avatar>
+    <h1>{{userService.getUser().username}}</h1>
+</div>

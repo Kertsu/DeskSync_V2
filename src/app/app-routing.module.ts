@@ -15,6 +15,7 @@ import { ManageUsersComponent } from './pages/manage-users/manage-users.componen
 import { ManageReservationsComponent } from './pages/manage-reservations/manage-reservations.component';
 import { ManageDeskUnavailabilitiesComponent } from './pages/manage-desk-unavailabilities/manage-desk-unavailabilities.component';
 import { authGuard, guestGuard, hasAccess, isAdmin } from './shared/auth.guard';
+import { ManageDesksComponent } from './pages/manage-desks/manage-desks.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/login'},
@@ -48,7 +49,7 @@ const routes: Routes = [
       { path: 'logs', component: LogsComponent, canActivate: [isAdmin] },
       { path: 'manage-users', component: ManageUsersComponent, canActivate: [isAdmin]  },
       { path: 'manage-reservations', component: ManageReservationsComponent, canActivate: [hasAccess]  },
-      { path: 'manage-desks', component: ManageReservationsComponent, canActivate: [hasAccess]  },
+      { path: 'manage-desks', component: ManageDesksComponent, canActivate: [hasAccess]  },
       {
         path: 'manage-unavailabilities',
         component: ManageDeskUnavailabilitiesComponent, canActivate: [hasAccess] 

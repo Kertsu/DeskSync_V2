@@ -31,7 +31,7 @@ export const hasAccess : CanActivateFn = (route, state) => {
   const userService = inject(UserService);
   const router = inject(Router);
 
-  if (userService.getUser().role == 'admin' || userService.getUser().role == 'om'){
+  if (userService.getUser().role == 'admin' || userService.getUser().role == 'om'|| userService.getUser().role == 'superadmin'){
     return true
   } else {
     router.navigate(['**'])
