@@ -55,3 +55,8 @@ ul {
   right:1.5rem;
   bottom: 3.5rem;
 }
+
+::ng-deep p-avatar>div img {
+  object-fit: cover;
+  object-position: center;
+}

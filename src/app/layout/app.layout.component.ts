@@ -208,12 +208,7 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
         }, 500);
 
         const user = this.userService.getUser()
-        const userData = {
-          id: user.id,
-          username: user.username,
-          avatar: user.avatar
-        }
-        this.socketService.emit('live', userData);
+        this.socketService.emit('live', user);
       },
     });
   }

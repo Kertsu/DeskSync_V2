@@ -3,11 +3,11 @@
   @for (item of cardContent; track $index) {
     <div class="card shadow-1 flex flex-column justify-content-between mb-3 md:w-3" >
       <div>
-        <h5 class="text-sm text-color-secondary">{{item.title}}</h5>
+        <h5 class="text-normal text-color-secondary">{{item.title}}</h5>
       </div>
-      <div >
-        <a [routerLink]="item.routerLink" class="flex justify-content-between">
-          <h5 class="m-0">{{item.count}}</h5>
+      <div class="flex justify-content-between">
+        <h5 class="m-0">{{item.count}}</h5>
+        <a [routerLink]="item.routerLink" >
           <p-avatar styleClass="bg-primary text-color-primary" icon="pi pi-{{item.icon}}" size="normal"></p-avatar>
         </a>
       </div>
@@ -16,17 +16,17 @@
 
 </div>
 <div class="card shadow-1 xl:flex xl:gap-3 xl:flex-row">
-  <div class="xl:w-9">
+  <div class="xl:w-8">
     <h5>Reservation Trends</h5>
     <p-chart type="line" [data]="data" [options]="options"></p-chart>
   </div>
-  <div class="hidden xl:block xl:w-3">
+  <div class="hidden xl:block xl:w-4">
     <h5>Active Users</h5>
-    @for (item of [1,2,3,4]; track $index) {
-      <div>
-        <p>name</p>
-        <p>email</p>
-      </div>
+    <p *ngIf="activeUsers.length === 0">There's no one else here...</p>
+    @if (activeUsers.length !== 0) {
+      <ng-container  *ngFor="let user of activeUsers">
+        <app-active-user [user]="user" />
+      </ng-container>
     }
   </div>
 </div>

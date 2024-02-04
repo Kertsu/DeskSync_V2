@@ -7,6 +7,14 @@ import {
 } from '@angular/core';
 import { SocketService } from '../../services/socket.service';
 import { Socket } from 'ngx-socket-io';
+
+interface ActiveUser {
+  id: string;
+  username: string;
+  avatar: string;
+  email: string;
+  role: string;
+}
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -23,6 +31,8 @@ export class DashboardComponent implements OnInit {
   surfaceBorder!: any;
 
   cardContent!: any[];
+
+  activeUsers: ActiveUser[] = [{"id":"65b480cd73497b0eecac836b","username":"Kertsu","email":"kurtddanielbigtas@student.laverdad.edu.ph","role":"superadmin","avatar":"http://res.cloudinary.com/drlztlr1m/image/upload/v1706356600/hzomg9luobx6v8lvxdng.jpg"}, {"id":"65be6e9e31c19ca1cf414b9f","username":"johnmarkfaeldonia","email":"johnmarkfaeldonia@student.laverdad.edu.ph","role":"user","avatar":"http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg"}, {"id":"65be7149289699e84d2b9a56","username":"jirehbelen","email":"jirehbelen@student.laverdad.edu.ph","role":"user","avatar":"http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg"}]
 
   constructor(private socket: Socket, private cdr: ChangeDetectorRef) {
     this.cardContent = [
@@ -47,7 +57,7 @@ export class DashboardComponent implements OnInit {
       datasets: [
         {
           label: 'Reservation Trend',
-          data: [100, 59, 80, 81, 56, 55, 40],
+          data: [2, 59, 80, 81, 56, 55, 40],
           fill: false,
           borderColor: this.documentStyle.getPropertyValue('--blue-500'),
           tension: 0.4,
