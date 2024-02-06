@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import * as FileSaver from 'file-saver';
 import { Table } from 'primeng/table';
 interface Column {
@@ -20,6 +21,12 @@ interface ExportColumn {
 export class LogsComponent implements OnInit {
 
   @ViewChild ('dt') dt!: Table;
+
+  selectedStatus = new FormControl()
+
+  loading: boolean = false;
+
+  totalRecords: number = 4;
 
   trails: any[] = [{
     "_id": {
@@ -88,6 +95,8 @@ export class LogsComponent implements OnInit {
     "__v": 0
   }]
 
+  statuses!: any[];
+
   selectedTrails: any[] = []
 
   constructor() {}
@@ -97,6 +106,11 @@ export class LogsComponent implements OnInit {
   exportColumns!: ExportColumn[];
 
   ngOnInit() {
+
+    this.statuses = [
+      { label: 'Failure', value: 'failure' },
+      { label: 'Success', value: 'success' },
+  ];
 
       this.cols = [
           { field: 'createdAt', header: 'Date & Time' },
@@ -150,6 +164,10 @@ export class LogsComponent implements OnInit {
           type: EXCEL_TYPE
       });
       FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+  }
+
+  loadAuditTrails(event : any){
+    console.log(event);
   }
   
 }
