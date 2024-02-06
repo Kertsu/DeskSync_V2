@@ -1,5 +1,5 @@
 
-<div class="flex flex-column md:flex-row md:gap-2 lg:gap-3 max-w-full">
+<div class="flex flex-column mb-2 md:flex-row md:gap-2 lg:gap-3 max-w-full">
   @for (item of cardContent; track $index) {
     <div class="card shadow-1 flex flex-column justify-content-between mb-3 md:w-3" >
       <div>
@@ -31,10 +31,28 @@
   </div>
 </div>
 
-<div class="card">
-  <div class="flex justify-content-between align-items-center mb-2">
-    <h5 class="m-0">Your reservations</h5>
-    <a routerLink="/hdbsv2/profile">View All</a>
+<div class="flex flex-column md:flex-row md:gap-3">
+
+  <div class="card w-full md:w-6">
+    <div class="flex justify-content-between align-items-center mb-5">
+      <h5>Your reservations</h5>
+      <a routerLink="/hdbsv2/profile">View All</a>
+    </div>
+    <p-calendar styleClass="w-full" class="w-full max-w-full" [formControl]="date" [inline]="true" [showWeek]="false"></p-calendar>
   </div>
-  <p-calendar styleClass="w-full" class="w-full max-w-full" [formControl]="date" [inline]="true" [showWeek]="false"></p-calendar>
+  <div class="card w-full md:w-6 mb-5">
+    <div class="flex justify-content-between align-items-center mb-5">
+      <h5>Recent Activities</h5>
+      <a routerLink="/hdbsv2/logs">View All</a>
+    </div>
+    <p-timeline [value]="recentActivities" align="right">
+      
+      <ng-template pTemplate="content" let-activity>
+          <small class="p-text-secondary">{{ activity.createdAt | date: 'medium' }}</small>
+      </ng-template>
+      <ng-template pTemplate="opposite" let-activity>
+          {{ activity.status }}
+      </ng-template>
+  </p-timeline>
+  </div>
 </div>
