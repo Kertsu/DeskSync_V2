@@ -37,6 +37,12 @@ ul {
   -webkit-text-fill-color: transparent;
 }
 
+.overflow-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 @media (min-width: 1280px) {
   #login {
     width: 25% !important;

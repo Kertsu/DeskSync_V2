@@ -1,19 +1,23 @@
-
 <div class="flex flex-column mb-2 md:flex-row md:gap-2 lg:gap-3 max-w-full">
   @for (item of cardContent; track $index) {
-    <div class="card shadow-1 flex flex-column justify-content-between mb-3 md:w-3" >
-      <div>
-        <h5 class="text-normal text-color-secondary">{{item.title}}</h5>
-      </div>
-      <div class="flex justify-content-between">
-        <h5 class="m-0">{{item.count}}</h5>
-        <a [routerLink]="item.routerLink" >
-          <p-avatar styleClass="bg-primary text-color-primary" icon="pi pi-{{item.icon}}" size="normal"></p-avatar>
-        </a>
-      </div>
+  <div
+    class="card shadow-1 flex flex-column justify-content-between mb-3 md:w-3"
+  >
+    <div>
+      <h5 class="text-normal text-color-secondary">{{ item.title }}</h5>
     </div>
+    <div class="flex justify-content-between">
+      <h5 class="m-0">{{ item.count }}</h5>
+      <a [routerLink]="item.routerLink">
+        <p-avatar
+          styleClass="bg-primary text-color-primary"
+          icon="pi pi-{{ item.icon }}"
+          size="normal"
+        ></p-avatar>
+      </a>
+    </div>
+  </div>
   }
-
 </div>
 <div class="card shadow-1 xl:flex xl:gap-3 xl:flex-row">
   <div class="xl:w-8">
@@ -24,35 +28,51 @@
     <h5>Active Users</h5>
     <p *ngIf="activeUsers.length === 0">There's no one else here...</p>
     @if (activeUsers.length !== 0) {
-      <ng-container  *ngFor="let user of activeUsers">
-        <app-active-user [user]="user" />
-      </ng-container>
+    <ng-container *ngFor="let user of activeUsers">
+      <app-active-user [user]="user" />
+    </ng-container>
     }
   </div>
 </div>
 
 <div class="flex flex-column md:flex-row md:gap-3">
-
   <div class="card w-full md:w-6">
-    <div class="flex justify-content-between align-items-center mb-5">
+    <div class="flex justify-content-between align-items-center ">
       <h5>Your reservations</h5>
       <a routerLink="/hdbsv2/profile">View All</a>
     </div>
-    <p-calendar styleClass="w-full" class="w-full max-w-full" [formControl]="date" [inline]="true" [showWeek]="false"></p-calendar>
+    <p-calendar
+      styleClass="w-full"
+      class="w-full max-w-full"
+      [formControl]="date"
+      [inline]="true"
+      [showWeek]="false"
+    ></p-calendar>
   </div>
   <div class="card w-full md:w-6 mb-5">
-    <div class="flex justify-content-between align-items-center mb-5">
+    <div class="flex justify-content-between align-items-center">
       <h5>Recent Activities</h5>
       <a routerLink="/hdbsv2/logs">View All</a>
     </div>
-    <p-timeline [value]="recentActivities" align="right">
-      
-      <ng-template pTemplate="content" let-activity>
-          <small class="p-text-secondary">{{ activity.createdAt | date: 'medium' }}</small>
-      </ng-template>
-      <ng-template pTemplate="opposite" let-activity>
-          {{ activity.status }}
-      </ng-template>
-  </p-timeline>
+    <p *ngIf="recentActivities.length === 0">Guess no one has accessed the system yet...</p>
+
+    @if (recentActivities.length !== 0) {
+      @for (activity of recentActivities; track $index) {
+        
+        <div class="flex flex-column gap-1">
+          <div class="flex justify-content-between">
+            <div class="flex flex-column gap-2">
+              <p class="m-0 overflow-ellipsis xl:max-w-full" style="max-width: 200px;">
+                {{ activity.email }}
+              </p>
+              <p class="text-xs text-color-secondary m-0">{{ activity.actionDetails }}</p>
+            </div>
+            <p-tag [severity]="getSeverity(activity.status)">{{activity.status}}</p-tag>
+          </div>
+          <p-divider></p-divider>
+        </div>
+      }
+    }
+
   </div>
 </div>

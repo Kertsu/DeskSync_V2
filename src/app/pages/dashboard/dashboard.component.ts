@@ -112,42 +112,6 @@ export class DashboardComponent implements OnInit{
       "updatedAt":"2023-12-30T04:05:12.814Z"
       ,
       "__v": 0
-    },
-    {
-      "_id": {
-        "$oid": "658f96f83a3771b3440c406a"
-      },
-      "user": {
-        "$oid": "65671517eec8a4d2d7c7cf56"
-      },
-      "email": "kurtddbigtas@gmail.com",
-      "actionType": "Logout",
-      "actionDetails": "kd logged out",
-      "ipAddress": "64.224.99.19",
-      "status": "success",
-      "createdAt":"2023-12-30T04:05:12.814Z"
-      ,
-      "updatedAt":"2023-12-30T04:05:12.814Z"
-      ,
-      "__v": 0
-    },
-    {
-      "_id": {
-        "$oid": "658f96f83a3771b3440c406a"
-      },
-      "user": {
-        "$oid": "65671517eec8a4d2d7c7cf56"
-      },
-      "email": "kurtddbigtas@gmail.com",
-      "actionType": "Logout",
-      "actionDetails": "kd logged out",
-      "ipAddress": "64.224.99.19",
-      "status": "success",
-      "createdAt":"2023-12-30T04:05:12.814Z"
-      ,
-      "updatedAt":"2023-12-30T04:05:12.814Z"
-      ,
-      "__v": 0
     }]
 
 
@@ -230,5 +194,16 @@ export class DashboardComponent implements OnInit{
     }
 
     return nextTwoWeeks;
+  }
+
+  getSeverity(status: string){
+    switch(status){
+      case "failure":
+        return 'danger';
+      case "success": 
+        return 'success'
+      default: 
+        return 
+    }
   }
 }

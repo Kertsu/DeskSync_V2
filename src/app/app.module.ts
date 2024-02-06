@@ -26,6 +26,7 @@ import { CalendarModule } from 'primeng/calendar';
 import {DropdownModule} from 'primeng/dropdown'
 import { TimelineModule } from 'primeng/timeline';
 import { DividerModule } from 'primeng/divider';
+import { TagModule } from 'primeng/tag';
 
 import {  SocketIoModule , SocketIoConfig} from 'ngx-socket-io';
 
@@ -79,7 +80,7 @@ const config: SocketIoConfig = {
     AppLayoutModule,
     BadgeModule,
     OverlayPanelModule,
-    SpeedDialModule, ChartModule, CalendarModule,DropdownModule,TimelineModule,DividerModule,
+    SpeedDialModule, ChartModule, CalendarModule,DropdownModule,TimelineModule,DividerModule,TagModule,
     SocketIoModule.forRoot(config)
   ],
   providers: [provideHttpClient(withInterceptors([authInterceptor]))],
