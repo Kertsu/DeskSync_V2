@@ -22,6 +22,7 @@ import { BadgeModule } from 'primeng/badge';
 import {OverlayPanelModule} from 'primeng/overlaypanel'
 import { SpeedDialModule } from 'primeng/speeddial';
 import { ChartModule } from 'primeng/chart';
+import { CalendarModule } from 'primeng/calendar';
 
 import {  SocketIoModule , SocketIoConfig} from 'ngx-socket-io';
 
@@ -75,7 +76,7 @@ const config: SocketIoConfig = {
     AppLayoutModule,
     BadgeModule,
     OverlayPanelModule,
-    SpeedDialModule, ChartModule,
+    SpeedDialModule, ChartModule, CalendarModule,
     SocketIoModule.forRoot(config)
   ],
   providers: [provideHttpClient(withInterceptors([authInterceptor]))],

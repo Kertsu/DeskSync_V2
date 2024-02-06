@@ -30,3 +30,11 @@
     }
   </div>
 </div>
+
+<div class="card">
+  <div class="flex justify-content-between align-items-center mb-2">
+    <h5 class="m-0">Your reservations</h5>
+    <a routerLink="/hdbsv2/profile">View All</a>
+  </div>
+  <p-calendar styleClass="w-full" class="w-full max-w-full" [formControl]="date" [inline]="true" [showWeek]="false"></p-calendar>
+</div>

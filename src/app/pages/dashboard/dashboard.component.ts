@@ -2,11 +2,13 @@ import {
   ChangeDetectorRef,
   Component,
   OnChanges,
+  OnDestroy,
   OnInit,
   SimpleChanges,
 } from '@angular/core';
 import { SocketService } from '../../services/socket.service';
 import { Socket } from 'ngx-socket-io';
+import { FormControl } from '@angular/forms';
 
 interface ActiveUser {
   id: string;
@@ -20,7 +22,7 @@ interface ActiveUser {
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit{
   data: any;
 
   options: any;
@@ -31,6 +33,8 @@ export class DashboardComponent implements OnInit {
   surfaceBorder!: any;
 
   cardContent!: any[];
+
+  date = new FormControl();
 
   activeUsers: ActiveUser[] = [{"id":"65b480cd73497b0eecac836b","username":"Kertsu","email":"kurtddanielbigtas@student.laverdad.edu.ph","role":"superadmin","avatar":"http://res.cloudinary.com/drlztlr1m/image/upload/v1706356600/hzomg9luobx6v8lvxdng.jpg"}, {"id":"65be6e9e31c19ca1cf414b9f","username":"johnmarkfaeldonia","email":"johnmarkfaeldonia@student.laverdad.edu.ph","role":"user","avatar":"http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg"}, {"id":"65be7149289699e84d2b9a56","username":"jirehbelen","email":"jirehbelen@student.laverdad.edu.ph","role":"user","avatar":"http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg"}]
 
@@ -97,6 +101,7 @@ export class DashboardComponent implements OnInit {
       },
     };
   }
+
 
   getNextTwoWeeks() {
     const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];

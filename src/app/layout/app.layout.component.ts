@@ -176,6 +176,8 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
     if (this.menuOutsideClickListener) {
       this.menuOutsideClickListener();
     }
+
+    this.messages = []
   }
 
   ngOnInit(): void {
