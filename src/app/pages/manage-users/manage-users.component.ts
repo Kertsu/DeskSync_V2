@@ -1,16 +1,42 @@
 import { Component, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-manage-users',
   templateUrl: './manage-users.component.html',
   styleUrl: './manage-users.component.css',
-  providers: [MessageService, ConfirmationService]
+  providers: [MessageService, ConfirmationService],
 })
 export class ManageUsersComponent {
   userDialog: boolean = false;
 
-  users: any[] = [{"id":"65b480cd73497b0eecac836b","username":"Kertsu","email":"kurtddanielbigtas@student.laverdad.edu.ph","role":"superadmin","avatar":"http://res.cloudinary.com/drlztlr1m/image/upload/v1706356600/hzomg9luobx6v8lvxdng.jpg"}, {"id":"65be6e9e31c19ca1cf414b9f","username":"johnmarkfaeldonia","email":"johnmarkfaeldonia@student.laverdad.edu.ph","role":"user","avatar":"http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg"}, {"id":"65be7149289699e84d2b9a56","username":"jirehbelen","email":"jirehbelen@student.laverdad.edu.ph","role":"user","avatar":"http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg"}]
+  users: any[] = [
+    {
+      id: '65b480cd73497b0eecac836b',
+      username: 'Kertsu',
+      email: 'kurtddanielbigtas@student.laverdad.edu.ph',
+      role: 'superadmin',
+      avatar:
+        'http://res.cloudinary.com/drlztlr1m/image/upload/v1706356600/hzomg9luobx6v8lvxdng.jpg',
+    },
+    {
+      id: '65be6e9e31c19ca1cf414b9f',
+      username: 'johnmarkfaeldonia',
+      email: 'johnmarkfaeldonia@student.laverdad.edu.ph',
+      role: 'user',
+      avatar:
+        'http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg',
+    },
+    {
+      id: '65be7149289699e84d2b9a56',
+      username: 'jirehbelen',
+      email: 'jirehbelen@student.laverdad.edu.ph',
+      role: 'user',
+      avatar:
+        'http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg',
+    },
+  ];
 
   user!: any;
 
@@ -18,19 +44,34 @@ export class ManageUsersComponent {
 
   submitted: boolean = false;
 
-  statuses!: any[];
+  roles!: any[];
+
+  form = this.fb.group({
+    username: ['', Validators.required],
+    email: [
+      '',
+      [
+        Validators.required,
+        Validators.email,
+        Validators.pattern(/@(student\.laverdad\.edu\.ph|laverdad\.edu\.ph)$/),
+      ],
+    ],
+  });
 
   @ViewChild('dt') dt: Table | undefined;
 
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService) {}
+  constructor(
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit() {
-
-      this.statuses = [
-          { label: 'INSTOCK', value: 'instock' },
-          { label: 'LOWSTOCK', value: 'lowstock' },
-          { label: 'OUTOFSTOCK', value: 'outofstock' }
-      ];
+    this.roles = [
+      { label: 'Admin', value: 'admin' },
+      { label: 'User', value: 'user' },
+      { label: 'Office Manager', value: 'om' },
+    ];
   }
 
   applyFilterGlobal($event: any, stringVal: any) {
@@ -38,86 +79,108 @@ export class ManageUsersComponent {
   }
 
   openNew() {
-      this.user = {};
-      this.submitted = false;
-      this.userDialog = true;
+    this.user = {};
+    this.submitted = false;
+    this.userDialog = true;
   }
 
   deleteSelectedUsers() {
-      this.confirmationService.confirm({
-          message: 'Are you sure you want to delete the selected users?',
-          header: 'Confirm',
-          icon: 'pi pi-exclamation-triangle',
-          accept: () => {
-              this.users = this.users.filter((val) => !this.selectedUsers?.includes(val));
-              this.selectedUsers = null;
-              this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Users Deleted', life: 3000 });
-          }
-      });
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete the selected users?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.users = this.users.filter(
+          (val) => !this.selectedUsers?.includes(val)
+        );
+        this.selectedUsers = null;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Users Deleted',
+          life: 3000,
+        });
+      },
+    });
   }
 
   editUser(user: any) {
-      this.user = { ...user };
-      this.userDialog = true;
+    this.user = { ...user };
+    this.userDialog = true;
   }
 
   deleteUser(user: any) {
-      this.confirmationService.confirm({
-          message: 'Are you sure you want to delete ' + user.name + '?',
-          header: 'Confirm',
-          icon: 'pi pi-exclamation-triangle',
-          accept: () => {
-              this.users = this.users.filter((val) => val.id !== user.id);
-              this.user = {};
-              this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
-          }
-      });
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + user.username + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.users = this.users.filter((val) => val.id !== user.id);
+        this.user = {};
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'User Deleted',
+          life: 3000,
+        });
+      },
+    });
   }
 
   hideDialog() {
-      this.userDialog = false;
-      this.submitted = false;
+    this.userDialog = false;
+    this.submitted = false;
   }
 
   saveUser() {
-      this.submitted = true;
+    this.submitted = true;
 
-      if (this.user.name?.trim()) {
-          if (this.user.id) {
-              this.users[this.findIndexById(this.user.id)] = this.user;
-              this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Updated', life: 3000 });
-          } else {
-              this.user.id = this.createId();
-              this.user.image = 'user-placeholder.svg';
-              this.users.push(this.user);
-              this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Created', life: 3000 });
-          }
-
-          this.users = [...this.users];
-          this.userDialog = false;
-          this.user = {};
+    if (this.user.name?.trim()) {
+      if (this.user.id) {
+        this.users[this.findIndexById(this.user.id)] = this.user;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'User Updated',
+          life: 3000,
+        });
+      } else {
+        this.user.id = this.createId();
+        this.user.image = 'user-placeholder.svg';
+        this.users.push(this.user);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'User Created',
+          life: 3000,
+        });
       }
+
+      this.users = [...this.users];
+      this.userDialog = false;
+      this.user = {};
+    }
   }
 
   findIndexById(id: string): number {
-      let index = -1;
-      for (let i = 0; i < this.users.length; i++) {
-          if (this.users[i].id === id) {
-              index = i;
-              break;
-          }
+    let index = -1;
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].id === id) {
+        index = i;
+        break;
       }
+    }
 
-      return index;
+    return index;
   }
 
   createId(): string {
-      let id = '';
-      var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      for (var i = 0; i < 5; i++) {
-          id += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      return id;
+    let id = '';
+    var chars =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < 5; i++) {
+      id += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return id;
   }
-
 }
