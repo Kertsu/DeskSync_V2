@@ -3,7 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppLayoutModule } from './layout/app.layout.module';
@@ -19,16 +23,24 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
 import { BadgeModule } from 'primeng/badge';
-import {OverlayPanelModule} from 'primeng/overlaypanel'
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { ChartModule } from 'primeng/chart';
 import { CalendarModule } from 'primeng/calendar';
-import {DropdownModule} from 'primeng/dropdown'
+import { DropdownModule } from 'primeng/dropdown';
 import { TimelineModule } from 'primeng/timeline';
 import { DividerModule } from 'primeng/divider';
 import { TagModule } from 'primeng/tag';
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
+import { FileUploadModule } from 'primeng/fileupload';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { RatingModule } from 'primeng/rating';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { InputNumberModule } from 'primeng/inputnumber';
 
-import {  SocketIoModule , SocketIoConfig} from 'ngx-socket-io';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { LoginComponent } from './pages/login/login.component';
 import { FormLinksComponent } from './components/form-links/form-links.component';
@@ -55,11 +67,35 @@ import { ActiveUserComponent } from './components/active-user/active-user.compon
 
 const config: SocketIoConfig = {
   // url: 'https://hdbsv2.onrender.com', options: {transports: ['websocket']}
-  url: 'http://localhost:8000', options: {transports: ['websocket']}
-}
+  url: 'http://localhost:8000',
+  options: { transports: ['websocket'] },
+};
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, FormLinksComponent, DashboardComponent, LandingComponent, FeaturesComponent, AboutComponent, PrivacyPolicyComponent, TermsAndConditionsComponent, BookComponent, LogsComponent, ManageUsersComponent, ManageReservationsComponent, ManageDesksComponent, ManageDeskUnavailabilitiesComponent, FaqsComponent, GuidesComponent, ProfileComponent, Step1Component, Step2Component, Step3Component, ActiveUserComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    FormLinksComponent,
+    DashboardComponent,
+    LandingComponent,
+    FeaturesComponent,
+    AboutComponent,
+    PrivacyPolicyComponent,
+    TermsAndConditionsComponent,
+    BookComponent,
+    LogsComponent,
+    ManageUsersComponent,
+    ManageReservationsComponent,
+    ManageDesksComponent,
+    ManageDeskUnavailabilitiesComponent,
+    FaqsComponent,
+    GuidesComponent,
+    ProfileComponent,
+    Step1Component,
+    Step2Component,
+    Step3Component,
+    ActiveUserComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -80,8 +116,22 @@ const config: SocketIoConfig = {
     AppLayoutModule,
     BadgeModule,
     OverlayPanelModule,
-    SpeedDialModule, ChartModule, CalendarModule,DropdownModule,TimelineModule,DividerModule,TagModule,
-    SocketIoModule.forRoot(config)
+    SpeedDialModule,
+    ChartModule,
+    CalendarModule,
+    DropdownModule,
+    TimelineModule,
+    DividerModule,
+    TagModule,
+    ToastModule,
+    ToolbarModule,
+    FileUploadModule,
+    DialogModule,
+    ConfirmDialogModule,
+    RatingModule,
+    RadioButtonModule,
+    InputNumberModule,
+    SocketIoModule.forRoot(config),
   ],
   providers: [provideHttpClient(withInterceptors([authInterceptor]))],
   bootstrap: [AppComponent],

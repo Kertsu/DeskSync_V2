@@ -1,1 +1,186 @@
-<p>manage-users works!</p>
+<div class="card">
+  <p-toast></p-toast>
+  <p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+      <button
+        pButton
+        pRipple
+        label="New"
+        icon="pi pi-plus"
+        class="p-button-success mr-2"
+        (click)="openNew()"
+      ></button>
+      <button
+        pButton
+        pRipple
+        label="Delete"
+        icon="pi pi-trash"
+        class="p-button-danger"
+        (click)="deleteSelectedUsers()"
+        [disabled]="!selectedUsers || !selectedUsers.length"
+      ></button>
+    </ng-template>
+
+  </p-toolbar>
+
+  <p-table
+    #dt
+    [value]="users"
+    [rows]="10"
+    [paginator]="true"
+    [globalFilterFields]="[
+      'username',
+      'email',
+      'role',
+      'status'
+    ]"
+    [tableStyle]="{ 'min-width': '75rem' }"
+    [(selection)]="selectedUsers"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex flex-column gap-2 md:flex-row align-items-center justify-content-between">
+        <h5 class="m-0">Manage Users</h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="applyFilterGlobal($event, 'contains')"
+            placeholder="Search..."
+          />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 4rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th>Avatar</th>
+        <th pSortableColumn="name">
+          Name <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="email" style="min-width: 15rem">
+          Email <p-sortIcon field="email"></p-sortIcon>
+        </th>
+        <th pSortableColumn="role" style="min-width: 10rem">
+          Role <p-sortIcon field="role"></p-sortIcon>
+        </th>
+        <th pSortableColumn="status">
+          Status <p-sortIcon field="status"></p-sortIcon>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="user"></p-tableCheckbox>
+        </td>
+        <td>
+            <p-avatar image="{{user.avatar}}"
+            size="large" shape="circle"></p-avatar>
+        </td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+          {{user.isDisabled == true ? 'Disabled' : 'Active'}}
+        </td>
+        <td>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-success mr-2"
+            (click)="editUser(user)"
+          ></button>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-warning"
+            (click)="deleteUser(user)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{ users ? users.length : 0 }} users.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="userDialog" [style]="{ width: '450px' }" header="User Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-avatar image="{{user.avatar}}"
+      size="large" shape="circle"></p-avatar>
+        <div class="field">
+            <label for="name">Name</label>
+            <input type="text" pInputText id="name"  required autofocus />
+            <small class="p-error" *ngIf="submitted && !user.name">Name is required.</small>
+        </div>
+        <div class="field">
+            <label for="description">Description</label>
+            <textarea id="description" pInputTextarea  required rows="3" cols="20"></textarea>
+        </div>
+
+        <div class="field">
+            <label for="inventoryStatus">Inventory Status</label>
+            <p-dropdown  inputId="inventoryStatus" [options]="statuses">
+                <ng-template pTemplate="selectedItem">
+                    <p-tag [value]="user.inventoryStatus.toUpperCase()" ></p-tag>
+                </ng-template>
+                <ng-template let-option pTemplate="item">
+                    <p-tag [value]="option.label" ></p-tag>
+                </ng-template>
+            </p-dropdown>
+        </div>
+
+        <div class="field">
+            <label class="mb-3">Category</label>
+            <div class="formgrid grid">
+                <div class="field-radiobutton col-6">
+                    <p-radioButton id="category1" name="category" value="Accessories" ></p-radioButton>
+                    <label for="category1">Accessories</label>
+                </div>
+                <div class="field-radiobutton col-6">
+                    <p-radioButton id="category2" name="category" value="Clothing" ></p-radioButton>
+                    <label for="category2">Clothing</label>
+                </div>
+                <div class="field-radiobutton col-6">
+                    <p-radioButton id="category3" name="category" value="Electronics" ></p-radioButton>
+                    <label for="category3">Electronics</label>
+                </div>
+                <div class="field-radiobutton col-6">
+                    <p-radioButton id="category4" name="category" value="Fitness" ></p-radioButton>
+                    <label for="category4">Fitness</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="formgrid grid">
+            <div class="field col">
+                <label for="price">Price</label>
+                <p-inputNumber id="price"  mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+            </div>
+            <div class="field col">
+                <label for="quantity">Quantity</label>
+                <p-inputNumber id="quantity" ></p-inputNumber>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveUser()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
