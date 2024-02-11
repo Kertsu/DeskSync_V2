@@ -29,6 +29,7 @@
     [paginator]="true"
     [globalFilterFields]="['username', 'email', 'role', 'status']"
     [tableStyle]="{ 'min-width': '75rem' }"
+    [rowsPerPageOptions]="[10, 25, 50]"
     [(selection)]="selectedUsers"
     [rowHover]="true"
     dataKey="id"
@@ -128,7 +129,7 @@
     <form [formGroup]="form">
       <div class="field">
         <label for="name">Name</label>
-        <input type="text" formControlName="username" pInputText id="name" required autofocus />
+        <input type="text"  formControlName="username" pInputText id="name" required autofocus />
         <small class="p-error" *ngIf="submitted && !user.name"
           >Name is required.</small
         >

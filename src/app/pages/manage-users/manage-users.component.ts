@@ -105,6 +105,12 @@ export class ManageUsersComponent {
   }
 
   editUser(user: any) {
+    
+    this.form.patchValue({
+      username: user.username,
+      email: user.email
+    });
+    
     this.user = { ...user };
     this.userDialog = true;
   }
