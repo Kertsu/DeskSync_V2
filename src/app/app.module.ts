@@ -40,6 +40,8 @@ import { RatingModule } from 'primeng/rating';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import {InputSwitchModule} from 'primeng/inputswitch'
+import {ChipModule} from 'primeng/chip'
+
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
@@ -133,6 +135,7 @@ const config: SocketIoConfig = {
     RadioButtonModule,
     InputNumberModule,
     InputSwitchModule,
+    ChipModule,
     SocketIoModule.forRoot(config),
   ],
   providers: [provideHttpClient(withInterceptors([authInterceptor]))],
