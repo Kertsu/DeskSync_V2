@@ -39,9 +39,9 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { RatingModule } from 'primeng/rating';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
-import {InputSwitchModule} from 'primeng/inputswitch'
-import {ChipModule} from 'primeng/chip'
-
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { ChipModule } from 'primeng/chip';
+import { StepsModule } from 'primeng/steps';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
@@ -136,6 +136,7 @@ const config: SocketIoConfig = {
     InputNumberModule,
     InputSwitchModule,
     ChipModule,
+    StepsModule,
     SocketIoModule.forRoot(config),
   ],
   providers: [provideHttpClient(withInterceptors([authInterceptor]))],
