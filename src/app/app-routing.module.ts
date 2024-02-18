@@ -16,12 +16,16 @@ import { ManageReservationsComponent } from './pages/manage-reservations/manage-
 import { ManageDeskUnavailabilitiesComponent } from './pages/manage-desk-unavailabilities/manage-desk-unavailabilities.component';
 import { authGuard, guestGuard, hasAccess, isAdmin } from './shared/auth.guard';
 import { ManageDesksComponent } from './pages/manage-desks/manage-desks.component';
+import { VerificationComponent } from './pages/verification/verification.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/login'},
   {
     path: 'login',
     component: LoginComponent, canActivate:[authGuard]
+  },
+  {
+    path: 'verification', component: VerificationComponent, canActivate: [authGuard]
   },
   {
     path: 'hdbsv2',
