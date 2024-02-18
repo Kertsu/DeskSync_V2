@@ -4,6 +4,7 @@ import { SocketService } from '../../services/socket.service';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { WebService } from '../../services/web.service';
+import { NavigationService } from '../../shared/navigation.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent {
     private socketService: SocketService,
     private userService: UserService,
     private router: Router
-    ,private webService: WebService
+    ,private webService: WebService,
+    protected navigationService: NavigationService
   ) {
     
   }

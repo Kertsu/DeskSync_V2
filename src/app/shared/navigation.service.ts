@@ -10,6 +10,6 @@ export class NavigationService {
 
   navigate(route: string)
   {
-    this.router.navigate([route], {skipLocationChange: true})
+    this.router.navigate([route])
   }
 }
