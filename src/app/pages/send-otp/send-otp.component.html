@@ -1,4 +1,5 @@
-  <div id="login-wrapper" class="grid m-0 p-0">
+
+<div id="login-wrapper" class="grid m-0 p-0">
     <div id="login"
       class="flex flex-column gap-3 sm:w-full md:w-5 md:mx-auto lg:py-5 lg:px-3 lg:w-4"
     >
@@ -7,42 +8,27 @@
       >
         <div class="w-full px-3 justify-content-center flex align-items-center">
           <img
-            src="../../../assets/images/desksync_logo.png"
+            src="../../../assets/images/bg/at.svg"
             class="w-3"
-            alt="DeskSync Logo"
+            alt="Verify Logo"
           />
         </div>
+        <h2 class="font-normal">Forgot your password?</h2>
     
-        <h2 class="font-normal">Sign in to DeskSync</h2>
       </div>
+
     
       <form
         class="flex flex-column mx-3 gap-4 surface-ground p-3 border-round border-1 border-black-alpha-10"
-        [formGroup]="loginForm" (ngSubmit)="login()"
       >
+      <p class="font-normal m-0">Enter the email address associated with your account and we'll send you a link to reset your password</p>
+
 
         <div class="flex flex-column justify-content-center gap-1">
           <div class="flex flex-column gap-2">
             <label for="email">Email</label>
-            <input pInputText id="email" formControlName="email" [ngClass]="{'ng-invalid ng-dirty shake-error':errorMessage}"/>
+            <input pInputText id="email" [ngClass]="{'ng-invalid ng-dirty shake-error':errorMessage}"/>
           </div>
-        </div>
-
-        <div class="flex flex-column justify-content-center gap-1">
-          <div class="flex flex-column gap-2">
-            <div class="flex justify-content-between align-items-center">
-                <label for="password">Password</label>
-                <a routerLink="/send-otp" class="no-underline text-primary">Forgot password?</a>
-            </div>
-            <input
-            [ngClass]="{'ng-invalid ng-dirty shake-error':errorMessage}" 
-              pInputText
-              id="password"
-              type="password"
-              formControlName="password"
-            />
-          </div>
-          <span *ngIf="errorMessage" class="text-red-500 text-sm">{{errorMessage}}</span>
         </div>
     
         <div
@@ -54,13 +40,14 @@
             pRipple
             *ngIf="!isLoading"
             class="w-full py-2 px-4 text-white rounded-sm p-button-primary"
-            label="Sign in"
+            label="Continue"
             type="submit"
           ></button>
           <p-progressSpinner styleClass="w-2rem h-2rem"
             *ngIf="isLoading"
           ></p-progressSpinner>
         </div>
+
       </form>
     
       <div class="w-full mt-6">

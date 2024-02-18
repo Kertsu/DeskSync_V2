@@ -18,7 +18,8 @@ import { authGuard, guestGuard, hasAccess, isAdmin } from './shared/auth.guard';
 import { ManageDesksComponent } from './pages/manage-desks/manage-desks.component';
 import { VerificationComponent } from './pages/verification/verification.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
-import { VerifiedComponent } from './pages/verified/verified.component';
+import { SuccessResetComponent } from './pages/success-reset/success-reset.component';
+import { SendOtpComponent } from './pages/send-otp/send-otp.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/login'},
@@ -33,7 +34,10 @@ const routes: Routes = [
     path: 'change-password', component: ChangePasswordComponent, canActivate: [authGuard]
   },
   {
-    path: 'verified', component: VerifiedComponent, canActivate: [authGuard]
+    path: 'send-otp', component: SendOtpComponent, canActivate: [authGuard]
+  },
+  {
+    path: 'changed-password', component: SuccessResetComponent, canActivate: [authGuard]
   },
   {
     path: 'hdbsv2',

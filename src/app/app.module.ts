@@ -68,8 +68,9 @@ import { Step2Component } from './components/step-2/step-2.component';
 import { Step3Component } from './components/step-3/step-3.component';
 import { ActiveUserComponent } from './components/active-user/active-user.component';
 import { VerificationComponent } from './pages/verification/verification.component';
-import { VerifiedComponent } from './pages/verified/verified.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { SuccessResetComponent } from './pages/success-reset/success-reset.component';
+import { SendOtpComponent } from './pages/send-otp/send-otp.component';
 
 const config: SocketIoConfig = {
   // url: 'https://hdbsv2.onrender.com', options: {transports: ['websocket']}
@@ -102,8 +103,9 @@ const config: SocketIoConfig = {
     Step3Component,
     ActiveUserComponent,
     VerificationComponent,
-    VerifiedComponent,
     ChangePasswordComponent,
+    SuccessResetComponent,
+    SendOtpComponent,
   ],
   imports: [
     BrowserModule,
