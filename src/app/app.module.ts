@@ -71,6 +71,7 @@ import { VerificationComponent } from './pages/verification/verification.compone
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { SuccessResetComponent } from './pages/success-reset/success-reset.component';
 import { SendOtpComponent } from './pages/send-otp/send-otp.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const config: SocketIoConfig = {
   // url: 'https://hdbsv2.onrender.com', options: {transports: ['websocket']}
@@ -106,6 +107,7 @@ const config: SocketIoConfig = {
     ChangePasswordComponent,
     SuccessResetComponent,
     SendOtpComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

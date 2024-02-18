@@ -1,0 +1,39 @@
+<div
+  class="h-screen flex flex-column bg-cover w-10 md:w-6 lg:w-3"
+  style="margin: 0 auto;"
+>
+  <div class="align-self-center mt-auto mb-auto">
+    <div
+      class="text-center z-4 border-round-lg border-1 surface-border bg-white p-3 shadow-3 flex flex-column"
+    >
+      <div
+        class="border-round-md mx-auto border-1 surface-border bg-white -mt-6 px-3 py-1"
+      >
+        <h2 class="m-0 text-red-500">404</h2>
+      </div>
+      <div class="surface-200 p-3 mb-5 shadow-2 border-round-md mt-3 px-6">
+        <img src="../../../assets/images/bg/404.jpg" alt="" class="w-full" />
+      </div>
+      <div class="text-color-secondary pb-6">
+        Requested resource is not available.
+      </div>
+      <button
+        pbutton=""
+        pripple=""
+        type="button"
+        (click)="navigationService.navigate('/')"
+        label="GO BACK TO DASHBOARD"
+        class="p-element p-ripple p-button-text p-button p-component"
+        tabindex="0"
+      >
+        <span class="p-button-label">GO BACK TO DASHBOARD</span
+        ><span
+          class="p-ink"
+          aria-hidden="true"
+          role="presentation"
+          style="height: 307px; width: 307px; top: -123.797px; left: 6px"
+        ></span>
+      </button>
+    </div>
+  </div>
+</div>

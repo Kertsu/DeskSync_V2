@@ -20,6 +20,7 @@ import { VerificationComponent } from './pages/verification/verification.compone
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { SuccessResetComponent } from './pages/success-reset/success-reset.component';
 import { SendOtpComponent } from './pages/send-otp/send-otp.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/login'},
@@ -77,7 +78,9 @@ const routes: Routes = [
         component: ProfileComponent,
       },
     ],
-  },
+  },{
+    path: "**", component: NotFoundComponent
+  }
 ];
 
 @NgModule({
