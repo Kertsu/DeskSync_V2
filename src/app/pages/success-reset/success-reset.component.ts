@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './success-reset.component.css'
 })
 export class SuccessResetComponent {
+  isLoading: boolean = false;
+  errorMessage!: string | null;
 
 }
