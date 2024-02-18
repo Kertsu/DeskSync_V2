@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './change-password.component.css'
 })
 export class ChangePasswordComponent {
-
+  isLoading: boolean = false;
+  errorMessage!: string | null;
 }
