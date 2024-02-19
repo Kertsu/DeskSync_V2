@@ -1,8 +1,8 @@
 <div class="card">
-  <div class="flex flex-column gap-3 w-full md:w-6 md:flex-row">
+  <div class="flex flex-column w-full md:gap-5 md:flex-row-reverse">
     <div class="w-full">
       <h5 class="text-color-secondary font-semibold text-sm">PREVIEW</h5>
-      <div class="relative w-full shadow-1 border-round surface-ground">
+      <div class="relative w-full shadow-3 border-round surface-ground">
         <div class="w-full h-6rem lg:h-8rem xl:h-10rem">
           <img
             [src]="userService.getUser()?.banner"
@@ -17,11 +17,7 @@
         </div>
         <div
           class="w-5rem h-5rem border-circle absolute surface-ground flex justify-content-center align-items-center lg:w-7rem lg:h-7rem"
-          style="
-            left: 1rem;
-            transform: translateY( -50%);
-            padding: 0.0125rem;
-          "
+          style="left: 1rem; transform: translateY(-50%); padding: 0.0125rem"
         >
           <div class="w-11 flex justify-content-center align-items-center">
             <img
@@ -36,7 +32,7 @@
             />
           </div>
         </div>
-        <div class="surface-ground w-full mt-5 p-3 lg:mt-6">
+        <div class="surface-ground border-round-bottom w-full mt-5 p-3 lg:mt-6">
           <div class="w-full bg-primary-reverse p-3 border-round">
             <h5 class="text-color font-semibold text-lg mb-2">
               {{ userService.getUser()?.username }}
@@ -55,6 +51,65 @@
           </div>
         </div>
       </div>
+    </div>
+    <p-divider class="md:hidden"></p-divider>
+    <div class="w-full">
+      <form>
+        <div class="flex flex-column">
+          <label
+            for="username"
+            class="text-color-secondary font-semibold text-sm mb-3"
+            >DISPLAY NAME</label
+          >
+          <input pInputText id="username" />
+        </div>
+
+        <p-divider></p-divider>
+
+        <div class="flex flex-column">
+          <label
+            for="description"
+            class="text-color-secondary font-semibold text-sm mb-3"
+            >ABOUT ME</label
+          >
+          <span class="text-sm mb-3"
+            >Just tell us a little bit about yourself.</span
+          >
+          <input pStyleClass="surface-ground" pInputText id="description" />
+        </div>
+
+        <p-divider></p-divider>
+
+        <div class="flex flex-column">
+          <label
+            for="description"
+            class="text-color-secondary font-semibold text-sm mb-3"
+            >AVATAR</label
+          >
+
+          <div class="flex flex-row gap-6 align-items-center">
+            <button pButton class="py-2 px-3" label="Change avatar" type="button"></button>
+            <a class="cursor-pointer text-color-secondary hover:underline"
+              >Remove avatar</a
+            >
+          </div>
+        </div>
+        <p-divider></p-divider>
+        <div class="flex flex-column">
+          <label
+            for="description"
+            class="text-color-secondary font-semibold text-sm mb-3"
+            >BANNER</label
+          >
+
+          <div class="flex flex-row gap-6 align-items-center">
+            <button pButton class="py-2 px-3" label="Change banner" type="button"></button>
+            <a class="cursor-pointer text-color-secondary hover:underline"
+              >Remove banner</a
+            >
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
