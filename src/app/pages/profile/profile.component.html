@@ -1,16 +1,36 @@
 <div class="card">
     <p-tabView>
         <p-tabPanel header="Profile">
-            <p-avatar image="{{userService.getUser().avatar}}" size="xlarge" shape="circle"></p-avatar>
-            <h1>{{userService.getUser().username}}</h1>
+            <div class="flex flex-column gap-3 lg:flex-row">
+                <div class="hidden md:block">
+                    <h5 class="text-color-secondary font-semibold text-sm">PREVIEW</h5>
+                    <div class="relative w-full shadow-1 border-round surface-ground    ">
+                        <div class="w-full h-6rem"> <img [src]="userService.getUser()?.banner" alt="banner" class="w-full h-full border-round-top" style="aspect-ratio: 16/9; object-fit: cover; object-position: center;"></div>
+                        <div class="w-5rem h-5rem border-circle absolute surface-ground flex justify-content-center align-items-center" style="left: 1rem; transform: translateY(-50%); padding:0.0125rem;">
+                            <div class="w-11 flex justify-content-center align-items-center" >
+                                <img [src]="userService.getUser()?.avatar" alt="avatar" class="w-full h-full border-circle" style="aspect-ratio: 1/1; object-fit: cover; object-position: center;">
+                            </div>
+                        </div>
+                        <div class="surface-ground w-full mt-5 p-3 ">
+                            <div class="w-full bg-primary-reverse p-3 border-round">
+                            <h5 class="text-color font-semibold text-lg mb-2">{{userService.getUser()?.username}}</h5>
+                            <p class="text-color-secondary font-normal text-sm mb-2">{{userService.getUser()?.email}}</p>
+                            <p-divider></p-divider>
+                            <h5 class="text-color font-semibold text-sm">ABOUT ME</h5>
+                            <p class="text-color-secondary font-light text-sm mb-2">{{userService.getUser()?.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </p-tabPanel>
-        <p-tabPanel header="Header II">
+        <p-tabPanel header="Reservations">
             <p>
                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
                 ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
             </p>
         </p-tabPanel>
-        <p-tabPanel header="Header III">
+        <p-tabPanel header="Feedback & Reviews">
             <p>
                 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
                 qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
