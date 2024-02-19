@@ -42,6 +42,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ChipModule } from 'primeng/chip';
 import { StepsModule } from 'primeng/steps';
+import { TabViewModule } from 'primeng/tabview';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
@@ -147,6 +148,7 @@ const config: SocketIoConfig = {
     InputSwitchModule,
     ChipModule,
     StepsModule,
+    TabViewModule,
     SocketIoModule.forRoot(config),
   ],
   providers: [provideHttpClient(withInterceptors([authInterceptor]))],
