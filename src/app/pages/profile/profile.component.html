@@ -1,4 +1,5 @@
 <div class="card">
+  <h3>My Account</h3>
   <div class="flex flex-column w-full md:gap-5 md:flex-row-reverse">
     <div class="w-full">
       <h5 class="text-color-secondary font-semibold text-sm">PREVIEW</h5>
@@ -87,8 +88,8 @@
             >AVATAR</label
           >
 
-          <div class="flex flex-row gap-6 align-items-center">
-            <button pButton class="py-2 px-3" label="Change avatar" type="button"></button>
+          <div class="flex flex-column gap-3 md:flex-row md:gap-6 md:align-items-center">
+            <button pButton class="w-8 py-2 px-3 md:w-5 lg:w-4" label="Change avatar" type="button"></button>
             <a class="cursor-pointer text-color-secondary hover:underline"
               >Remove avatar</a
             >
@@ -102,12 +103,24 @@
             >BANNER</label
           >
 
-          <div class="flex flex-row gap-6 align-items-center">
-            <button pButton class="py-2 px-3" label="Change banner" type="button"></button>
+          <div class="flex flex-column gap-3 md:flex-row md:gap-6 md:align-items-center">
+            <button pButton class="w-8 py-2 px-3 md:w-5 lg:w-4" label="Change banner" type="button"></button>
             <a class="cursor-pointer text-color-secondary hover:underline"
               >Remove banner</a
             >
           </div>
+        </div>
+        <p-divider></p-divider>
+
+        <div class="flex flex-column">
+          <label
+            for="description"
+            class="text-color-secondary font-semibold text-sm mb-3"
+            >Password</label
+          >
+
+            <button pButton class="py-2 px-3 w-8 md:w-6 lg:w-4" label="Change password" type="button"></button>
+            
         </div>
       </form>
     </div>
