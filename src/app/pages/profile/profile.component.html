@@ -208,3 +208,17 @@
 </ng-template>
  
 </p-dialog>
+
+<p-toast position="bottom-center" key="bc" (onClose)="close()">
+  <ng-template let-message pTemplate="headless" let-closeFn="closeFn">
+    <section class="flex p-3 w-full surface-ground shadow-2" style="border-radius: 10px">
+      <div class="flex flex-row md:flex-column gap-3 w-full">
+        <p class="m-0 text-color">{{ message.detail }}</p>
+        <div class="flex gap-3 align-items-center">
+          <p-button label="Reset" [text]="true" styleClass="text-color p-0" (click)="closeFn($event)"></p-button>
+          <button pButton class="py-2 px-3 p-button-success" label="Save Changes" type="button"></button>
+        </div>
+      </div>
+    </section>
+  </ng-template>
+</p-toast>
