@@ -55,6 +55,16 @@
     </div>
     <p-divider class="md:hidden"></p-divider>
     <div class="w-full">
+      <div class="flex flex-column">
+        <label
+          for="username"
+          class="text-color-secondary font-semibold text-sm mb-3"
+          >EMAIL</label
+        >
+        <input class="surface-200" pInputText id="username" [disabled]="true" [value]="userService.getUser()?.email" />
+      </div>
+
+      <p-divider></p-divider>
       <form>
         <div class="flex flex-column">
           <label
@@ -130,7 +140,7 @@
 
 
 </div>
-<p-dialog header="Update your password" [modal]="true" [draggable]="false" [(visible)]="visible" [breakpoints]="{'375px':'90vw'}" [style]="{width: '40vw'}">
+<p-dialog header="Update your password" [modal]="true" [draggable]="false" [(visible)]="visible" [breakpoints]="{'375px':'90vw'}" [style]="{width: '25vw'}">
 
   <form [formGroup]="changePasswordForm" class="flex flex-column gap-3">
     <div class="flex flex-column justify-content-center gap-1">
