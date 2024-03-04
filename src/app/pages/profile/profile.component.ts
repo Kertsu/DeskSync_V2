@@ -9,6 +9,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
 
+  checked = new FormControl();
+
   visible: boolean = false;
 
   changePasswordForm!: FormGroup;

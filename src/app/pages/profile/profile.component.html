@@ -136,7 +136,29 @@
     </div>
   </div>
 
+  <p-divider></p-divider>
 
+  <h3>Notifications</h3>
+
+  <div class="flex flex-row justify-content-start gap-3 align-items-center w-full xl:w-6">
+    <div class="flex-flex-column gap-3">
+      <label
+      for="description"
+      class="text-color-secondary font-semibold text-sm mb-3"
+      >RECEIVE EMAIL</label
+    >
+    <span class="text-sm my-3 block"
+      >Your account will receive emails about updates and notifications from the system by default. You can turn off this feature if you prefer not to receive notifications.</span
+    >
+    <span class="text-sm my-3 block"
+      >e.g. Your reservation has started</span
+    >
+    </div>
+
+    
+    <p-inputSwitch [formControl]="checked"></p-inputSwitch>
+  </div>
+ 
 
 
 </div>
