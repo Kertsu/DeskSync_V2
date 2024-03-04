@@ -36,7 +36,7 @@
         <div class="surface-ground border-round-bottom w-full mt-5 p-3 lg:mt-6">
           <div class="w-full bg-primary-reverse p-3 border-round">
             <h5 class="text-color font-semibold text-lg mb-2">
-              {{ userService.getUser()?.username }}
+              {{ informationForm.get('username')?.value}}
             </h5>
             <p
               class="text-color-secondary font-normal text-sm mb-2 overflow-ellipsis"
@@ -47,7 +47,7 @@
             <p-divider></p-divider>
             <h5 class="text-color font-semibold text-sm">ABOUT ME</h5>
             <p class="text-color-secondary font-light text-sm mb-2">
-              {{ userService.getUser()?.description }}
+              {{ informationForm.get('description')?.value}}
             </p>
           </div>
         </div>
@@ -65,14 +65,14 @@
       </div>
 
       <p-divider></p-divider>
-      <form>
+      <form [formGroup]="informationForm">
         <div class="flex flex-column">
           <label
             for="username"
             class="text-color-secondary font-semibold text-sm mb-3"
             >DISPLAY NAME</label
           >
-          <input pInputText id="username" />
+          <input pInputText id="username" formControlName="username"/>
         </div>
 
         <p-divider></p-divider>
@@ -86,7 +86,7 @@
           <span class="text-sm mb-3"
             >Just tell us a little bit about yourself.</span
           >
-          <input pStyleClass="surface-ground" pInputText id="description" />
+          <textarea [autoResize]="true" pInputTextarea id="description" formControlName="description"></textarea>
         </div>
 
         <p-divider></p-divider>
