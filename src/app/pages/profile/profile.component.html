@@ -119,10 +119,60 @@
             >Password</label
           >
 
-            <button pButton class="py-2 px-3 w-8 md:w-6 lg:w-4" label="Change password" type="button"></button>
+            <button pButton (click)="showChangePasswordDialog()" class="py-2 px-3 w-8 md:w-6 lg:w-4" label="Change password" type="button"></button>
             
         </div>
       </form>
     </div>
   </div>
+
+
+
+
 </div>
+<p-dialog header="Update your password" [modal]="true" [draggable]="false" [(visible)]="visible" [breakpoints]="{'375px':'90vw'}" [style]="{width: '40vw'}">
+
+  <form [formGroup]="changePasswordForm" class="flex flex-column gap-3">
+    <div class="flex flex-column justify-content-center gap-1">
+      <div class="flex flex-column gap-2">
+        <div class="">
+            <label for="currentPassword" class="text-sm font-semibold text-color-secondary">CURRENT PASSWORD</label>
+        </div>
+        <input
+          pInputText
+          id="currentPassword"
+          type="password"
+        />
+      </div>
+    </div>
+    <div class="flex flex-column justify-content-center gap-1">
+      <div class="flex flex-column gap-2">
+        <div class="">
+            <label for="newPassword" class="text-sm font-semibold text-color-secondary">NEW PASSWORD</label>
+        </div>
+        <input
+          pInputText
+          id="newPassword"
+          type="password"
+        />
+      </div>
+    </div>
+    <div class="flex flex-column justify-content-center gap-1">
+      <div class="flex flex-column gap-2">
+        <div class="">
+            <label for="confirmPassword" class="text-sm font-semibold text-color-secondary">CONFIRM PASSWORD</label>
+        </div>
+        <input
+          pInputText
+          id="confirmPassword"
+          type="password"
+        />
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button (click)="visible = false" label="Done" pAutoFocus [autofocus]="true"></p-button>
+</ng-template>
+ 
+</p-dialog>

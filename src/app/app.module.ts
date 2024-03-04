@@ -44,6 +44,7 @@ import { ChipModule } from 'primeng/chip';
 import { StepsModule } from 'primeng/steps';
 import { TabViewModule } from 'primeng/tabview';
 import { ImageModule } from 'primeng/image';
+import { PasswordModule } from 'primeng/password';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
@@ -151,6 +152,7 @@ const config: SocketIoConfig = {
     StepsModule,
     TabViewModule,
     ImageModule,
+    PasswordModule,
     SocketIoModule.forRoot(config),
   ],
   providers: [provideHttpClient(withInterceptors([authInterceptor]))],
