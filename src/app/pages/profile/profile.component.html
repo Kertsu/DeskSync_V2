@@ -4,9 +4,9 @@
     <div class="w-full">
       <h5 class="text-color-secondary font-semibold text-sm">PREVIEW</h5>
       <div class="relative w-full shadow-3 border-round surface-ground">
-        <div class="w-full h-6rem lg:h-8rem xl:h-10rem">
+        <div class="w-full h-6rem lg:h-8rem xl:h-20rem">
           <img
-            [src]="userService.getUser()?.banner"
+            [src]="bannerSource"
             alt="banner"
             class="w-full h-full border-round-top"
             style="
@@ -22,7 +22,7 @@
         >
           <div class="w-11 flex justify-content-center align-items-center">
             <img
-              [src]="userService.getUser()?.avatar"
+              [src]="avatarSource"
               alt="avatar"
               class="w-full h-full border-circle"
               style="
@@ -33,7 +33,7 @@
             />
           </div>
         </div>
-        <div class="surface-ground border-round-bottom w-full mt-5 p-3 lg:mt-6">
+        <div class="surface-ground border-round-bottom w-full mt-5 p-3 lg:mt-6 xl:pb-8 xl:pt-5">
           <div class="w-full bg-primary-reverse p-3 border-round">
             <h5 class="text-color font-semibold text-lg mb-2">
               {{ informationForm.get('username')?.value}}
@@ -99,8 +99,9 @@
           >
 
           <div class="flex flex-column gap-3 md:flex-row md:gap-6 md:align-items-center">
-            <button pButton class="w-8 py-2 px-3 md:w-5 lg:w-4" label="Change avatar" type="button"></button>
+            <button pButton (click)="showUpload()" class="w-8 py-2 px-3 md:w-5 lg:w-4" label="Change avatar" type="button"></button>
             <a class="cursor-pointer text-color-secondary hover:underline"
+            (click)="removeAvatar()"
               >Remove avatar</a
             >
           </div>
@@ -114,8 +115,9 @@
           >
 
           <div class="flex flex-column gap-3 md:flex-row md:gap-6 md:align-items-center">
-            <button pButton class="w-8 py-2 px-3 md:w-5 lg:w-4" label="Change banner" type="button"></button>
+            <button pButton (click)="showUpload()" class="w-8 py-2 px-3 md:w-5 lg:w-4" label="Change banner" type="button"></button>
             <a class="cursor-pointer text-color-secondary hover:underline"
+            (click)="removeBanner()"
               >Remove banner</a
             >
           </div>

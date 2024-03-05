@@ -6,16 +6,19 @@ import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css',
+  styleUrls: ['./profile.component.css'],
   providers: [MessageService]
 })
 export class ProfileComponent implements OnInit {
   informationForm!: FormGroup;
   checked = new FormControl();
   visible: boolean = false;
+  uploadPopupShown: boolean = false;
   changePasswordForm!: FormGroup;
   messageShown: boolean = false;
   originalFormValue: any;
+  avatarSource: string = this.userService.getUser()?.avatar;
+  bannerSource: string = this.userService.getUser()?.banner;
 
   constructor(
     protected userService: UserService,
@@ -33,16 +36,19 @@ export class ProfileComponent implements OnInit {
     this.patchUser();
     this.setOriginalFormValue();
 
-    console.log('infoform1',this.informationForm.value)
-    console.log('origform1',this.originalFormValue)
-
     this.informationForm.valueChanges.subscribe(() => {
-      if (!this.messageShown && this.isFormChanged()) {
-        this.showAlert();
-        console.log('infoform2',this.informationForm.value)
-        console.log('origform2',this.originalFormValue)
-      }
+      this.checkForChanges();
     });
+  }
+
+  checkForChanges() {
+    const formChanged = this.isFormChanged();
+    const avatarChanged = this.avatarSource !== this.userService.getUser()?.avatar;
+    const bannerChanged = this.bannerSource !== this.userService.getUser()?.banner;
+
+    if (!this.messageShown && (formChanged || avatarChanged || bannerChanged)) {
+      this.showAlert();
+    }
   }
 
   showChangePasswordDialog() {
@@ -60,10 +66,9 @@ export class ProfileComponent implements OnInit {
   reset() {
     this.patchUser();
     this.setOriginalFormValue();
+    this.avatarSource = this.userService.getUser()?.avatar;
+    this.bannerSource = this.userService.getUser()?.banner;
     this.messageShown = false;
-
-    console.log('infoform3',this.informationForm.value)
-    console.log('origform3',this.originalFormValue)
   }
 
   showAlert() {
@@ -81,11 +86,28 @@ export class ProfileComponent implements OnInit {
   }
 
   isFormChanged() {
-    console.log(JSON.stringify(this.informationForm.value) !== JSON.stringify(this.originalFormValue))
     return JSON.stringify(this.informationForm.value) !== JSON.stringify(this.originalFormValue);
   }
 
   setOriginalFormValue() {
     this.originalFormValue = this.informationForm.value;
+  }
+
+  removeAvatar() {
+    this.avatarSource = 'http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg';
+    this.checkForChanges();
+  }
+
+  removeBanner() {
+    this.bannerSource = 'https://res.cloudinary.com/drlztlr1m/image/upload/v1708332794/memuvo7apu0eqdt4f6mr.svg';
+    this.checkForChanges();
+  }
+
+  showUpload(){
+    this.uploadPopupShown = true
+  }
+
+  onUpload(event: any){
+    console.log(event)
   }
 }
