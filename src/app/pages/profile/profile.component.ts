@@ -2,12 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { useAnimation, transition, trigger } from '@angular/animations';
+import { tada } from 'ng-animate';
+import confetti from 'canvas-confetti';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  providers: [MessageService]
+  providers: [MessageService],
+  animations: [
+    trigger('tada', [transition('* => *', useAnimation(tada))])
+  ],
 })
 export class ProfileComponent implements OnInit {
   informationForm!: FormGroup;
@@ -19,6 +25,8 @@ export class ProfileComponent implements OnInit {
   originalFormValue: any;
   avatarSource: string = this.userService.getUser()?.avatar;
   bannerSource: string = this.userService.getUser()?.banner;
+  bounceState:any;
+  successShown: boolean = false;
 
   constructor(
     protected userService: UserService,
@@ -43,8 +51,10 @@ export class ProfileComponent implements OnInit {
 
   checkForChanges() {
     const formChanged = this.isFormChanged();
-    const avatarChanged = this.avatarSource !== this.userService.getUser()?.avatar;
-    const bannerChanged = this.bannerSource !== this.userService.getUser()?.banner;
+    const avatarChanged =
+      this.avatarSource !== this.userService.getUser()?.avatar;
+    const bannerChanged =
+      this.bannerSource !== this.userService.getUser()?.banner;
 
     if (!this.messageShown && (formChanged || avatarChanged || bannerChanged)) {
       this.showAlert();
@@ -77,37 +87,54 @@ export class ProfileComponent implements OnInit {
       key: 'bc',
       severity: 'custom',
       detail: 'Heads up — you have unsaved changes!',
-      sticky: true
+      sticky: true,
     });
   }
 
   close() {
-      this.reset();
+    this.reset();
   }
 
   isFormChanged() {
-    return JSON.stringify(this.informationForm.value) !== JSON.stringify(this.originalFormValue);
+    return (
+      JSON.stringify(this.informationForm.value) !==
+      JSON.stringify(this.originalFormValue)
+    );
   }
 
   setOriginalFormValue() {
     this.originalFormValue = this.informationForm.value;
   }
 
+  // onUpload(event: any){
+  //   console.log(event)
+  // }
+
   removeAvatar() {
-    this.avatarSource = 'http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg';
+    this.avatarSource =
+      'http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg';
     this.checkForChanges();
   }
 
   removeBanner() {
-    this.bannerSource = 'https://res.cloudinary.com/drlztlr1m/image/upload/v1708332794/memuvo7apu0eqdt4f6mr.svg';
+    this.bannerSource =
+      'https://res.cloudinary.com/drlztlr1m/image/upload/v1708332794/memuvo7apu0eqdt4f6mr.svg';
     this.checkForChanges();
   }
 
-  showUpload(){
-    this.uploadPopupShown = true
+  showUpload() {
+    this.uploadPopupShown = true;
   }
 
-  onUpload(event: any){
-    console.log(event)
+  changePassword(){
+    this.visible = false;
+    this.successShown = true;
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
   }
+
+
 }

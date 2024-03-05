@@ -33,10 +33,12 @@
             />
           </div>
         </div>
-        <div class="surface-ground border-round-bottom w-full mt-5 p-3 lg:mt-6 xl:pb-8 xl:pt-5">
+        <div
+          class="surface-ground border-round-bottom w-full mt-5 p-3 lg:mt-6 xl:pb-8 xl:pt-5"
+        >
           <div class="w-full bg-primary-reverse p-3 border-round">
             <h5 class="text-color font-semibold text-lg mb-2">
-              {{ informationForm.get('username')?.value}}
+              {{ informationForm.get("username")?.value }}
             </h5>
             <p
               class="text-color-secondary font-normal text-sm mb-2 overflow-ellipsis"
@@ -47,7 +49,7 @@
             <p-divider></p-divider>
             <h5 class="text-color font-semibold text-sm">ABOUT ME</h5>
             <p class="text-color-secondary font-light text-sm mb-2">
-              {{ informationForm.get('description')?.value}}
+              {{ informationForm.get("description")?.value }}
             </p>
           </div>
         </div>
@@ -61,7 +63,13 @@
           class="text-color-secondary font-semibold text-sm mb-3"
           >EMAIL</label
         >
-        <input class="surface-200" pInputText id="username" [disabled]="true" [value]="userService.getUser()?.email" />
+        <input
+          class="surface-200"
+          pInputText
+          id="username"
+          [disabled]="true"
+          [value]="userService.getUser()?.email"
+        />
       </div>
 
       <p-divider></p-divider>
@@ -72,7 +80,7 @@
             class="text-color-secondary font-semibold text-sm mb-3"
             >DISPLAY NAME</label
           >
-          <input pInputText id="username" formControlName="username"/>
+          <input pInputText id="username" formControlName="username" />
         </div>
 
         <p-divider></p-divider>
@@ -86,7 +94,12 @@
           <span class="text-sm mb-3"
             >Just tell us a little bit about yourself.</span
           >
-          <textarea [autoResize]="true" pInputTextarea id="description" formControlName="description"></textarea>
+          <textarea
+            [autoResize]="true"
+            pInputTextarea
+            id="description"
+            formControlName="description"
+          ></textarea>
         </div>
 
         <p-divider></p-divider>
@@ -98,10 +111,19 @@
             >AVATAR</label
           >
 
-          <div class="flex flex-column gap-3 md:flex-row md:gap-6 md:align-items-center">
-            <button pButton (click)="showUpload()" class="w-8 py-2 px-3 md:w-5 lg:w-4" label="Change avatar" type="button"></button>
-            <a class="cursor-pointer text-color-secondary hover:underline"
-            (click)="removeAvatar()"
+          <div
+            class="flex flex-column gap-3 md:flex-row md:gap-6 md:align-items-center"
+          >
+            <button
+              pButton
+              (click)="showUpload()"
+              class="w-8 py-2 px-3 md:w-5 lg:w-4"
+              label="Change avatar"
+              type="button"
+            ></button>
+            <a
+              class="cursor-pointer text-color-secondary hover:underline"
+              (click)="removeAvatar()"
               >Remove avatar</a
             >
           </div>
@@ -114,10 +136,19 @@
             >BANNER</label
           >
 
-          <div class="flex flex-column gap-3 md:flex-row md:gap-6 md:align-items-center">
-            <button pButton (click)="showUpload()" class="w-8 py-2 px-3 md:w-5 lg:w-4" label="Change banner" type="button"></button>
-            <a class="cursor-pointer text-color-secondary hover:underline"
-            (click)="removeBanner()"
+          <div
+            class="flex flex-column gap-3 md:flex-row md:gap-6 md:align-items-center"
+          >
+            <button
+              pButton
+              (click)="showUpload()"
+              class="w-8 py-2 px-3 md:w-5 lg:w-4"
+              label="Change banner"
+              type="button"
+            ></button>
+            <a
+              class="cursor-pointer text-color-secondary hover:underline"
+              (click)="removeBanner()"
               >Remove banner</a
             >
           </div>
@@ -131,8 +162,13 @@
             >PASSWORD</label
           >
 
-            <button pButton (click)="showChangePasswordDialog()" class="py-2 px-3 w-8 md:w-6 lg:w-4" label="Change password" type="button"></button>
-            
+          <button
+            pButton
+            (click)="showChangePasswordDialog()"
+            class="py-2 px-3 w-8 md:w-6 lg:w-4"
+            label="Change password"
+            type="button"
+          ></button>
         </div>
       </form>
     </div>
@@ -142,83 +178,186 @@
 
   <h3>Notifications</h3>
 
-  <div class="flex flex-row justify-content-start gap-3 align-items-center w-full xl:w-6">
+  <div
+    class="flex flex-row justify-content-start gap-3 align-items-center w-full xl:w-6"
+  >
     <div class="flex-flex-column gap-3">
       <label
-      for="description"
-      class="text-color-secondary font-semibold text-sm mb-3"
-      >RECEIVE EMAIL</label
-    >
-    <span class="text-sm my-3 block"
-      >Your account will receive emails about updates and notifications from the system by default. You can turn off this feature if you prefer not to receive notifications.</span
-    >
-    <span class="text-sm my-3 block"
-      >e.g. Your reservation has started</span
-    >
+        for="description"
+        class="text-color-secondary font-semibold text-sm mb-3"
+        >RECEIVE EMAIL</label
+      >
+      <span class="text-sm my-3 block"
+        >Your account will receive emails about updates and notifications from
+        the system by default. You can turn off this feature if you prefer not
+        to receive notifications.</span
+      >
+      <span class="text-sm my-3 block">e.g. Your reservation has started</span>
     </div>
 
-    
     <p-inputSwitch [formControl]="checked"></p-inputSwitch>
   </div>
- 
-
-
 </div>
-<p-dialog header="Update your password" [modal]="true" [draggable]="false" [(visible)]="visible" [breakpoints]="{'375px':'90vw'}" [style]="{width: '25vw'}">
-
+<p-dialog
+  [@tada]="bounceState"
+  header="Update your password"
+  [modal]="true"
+  [draggable]="false"
+  [(visible)]="visible"
+  [breakpoints]="{ '375px': '90vw' }"
+  [style]="{ width: '25vw' }"
+>
   <form [formGroup]="changePasswordForm" class="flex flex-column gap-3">
     <div class="flex flex-column justify-content-center gap-1">
       <div class="flex flex-column gap-2">
         <div class="">
-            <label for="currentPassword" class="text-sm font-semibold text-color-secondary">CURRENT PASSWORD</label>
+          <label
+            for="currentPassword"
+            class="text-sm font-semibold text-color-secondary"
+            >CURRENT PASSWORD</label
+          >
         </div>
-        <input
-          pInputText
-          id="currentPassword"
-          type="password"
-        />
+        <input pInputText id="currentPassword" type="password" />
       </div>
     </div>
     <div class="flex flex-column justify-content-center gap-1">
       <div class="flex flex-column gap-2">
         <div class="">
-            <label for="newPassword" class="text-sm font-semibold text-color-secondary">NEW PASSWORD</label>
+          <label
+            for="newPassword"
+            class="text-sm font-semibold text-color-secondary"
+            >NEW PASSWORD</label
+          >
         </div>
-        <input
-          pInputText
-          id="newPassword"
-          type="password"
-        />
+        <input pInputText id="newPassword" type="password" />
       </div>
     </div>
     <div class="flex flex-column justify-content-center gap-1">
       <div class="flex flex-column gap-2">
         <div class="">
-            <label for="confirmPassword" class="text-sm font-semibold text-color-secondary">CONFIRM PASSWORD</label>
+          <label
+            for="confirmPassword"
+            class="text-sm font-semibold text-color-secondary"
+            >CONFIRM PASSWORD</label
+          >
         </div>
-        <input
-          pInputText
-          id="confirmPassword"
-          type="password"
-        />
+        <input pInputText id="confirmPassword" type="password" />
       </div>
     </div>
   </form>
 
   <ng-template pTemplate="footer">
-    <p-button (click)="visible = false" label="Done" pAutoFocus [autofocus]="true"></p-button>
-</ng-template>
- 
+    <p-button
+      (click)="visible = false"
+      label="Done"
+      pAutoFocus
+      [autofocus]="true"
+    ></p-button>
+  </ng-template>
 </p-dialog>
 
-<p-toast position="bottom-center" key="bc" (onClose)="close()" [breakpoints]="{'2960px' : {width: '50vw'}, '920px': {width: '90vw'}}">
+<p-dialog
+  header="Update your password"
+  [modal]="true"
+  [draggable]="false"
+  [(visible)]="visible"
+  [breakpoints]="{ '375px': '90vw' }"
+  [style]="{ width: '25vw' }"
+>
+  <form [formGroup]="changePasswordForm" class="flex flex-column gap-3">
+    <div class="flex flex-column justify-content-center gap-1">
+      <div class="flex flex-column gap-2">
+        <div class="">
+          <label
+            for="currentPassword"
+            class="text-sm font-semibold text-color-secondary"
+            >CURRENT PASSWORD</label
+          >
+        </div>
+        <input pInputText id="currentPassword" type="password" />
+      </div>
+    </div>
+    <div class="flex flex-column justify-content-center gap-1">
+      <div class="flex flex-column gap-2">
+        <div class="">
+          <label
+            for="newPassword"
+            class="text-sm font-semibold text-color-secondary"
+            >NEW PASSWORD</label
+          >
+        </div>
+        <input pInputText id="newPassword" type="password" />
+      </div>
+    </div>
+    <div class="flex flex-column justify-content-center gap-1">
+      <div class="flex flex-column gap-2">
+        <div class="">
+          <label
+            for="confirmPassword"
+            class="text-sm font-semibold text-color-secondary"
+            >CONFIRM PASSWORD</label
+          >
+        </div>
+        <input pInputText id="confirmPassword" type="password" />
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button
+      (click)="changePassword()"
+      label="Done"
+      pAutoFocus
+      [autofocus]="true"
+    ></p-button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog
+  header="Hooray!"
+  [draggable]="false"
+  [(visible)]="successShown"
+  [breakpoints]="{ '375px': '90vw' }"
+  [style]="{ width: '25vw' }"
+>
+  
+<div class="flex flex-column gap-6 justify-content-center align-items-center">
+  <img src="../../../assets/images/dialog/change_success.svg" alt="Password Change Success" class="w-10rem">
+  <div  class="text-center">
+    <h5>Well done!</h5>
+    <p>Your password has been successfully changed. You can now use your new password whenever you sign in.</p> 
+  </div>
+</div>
+</p-dialog>
+
+<p-toast
+  position="bottom-center"
+  key="bc"
+  (onClose)="close()"
+  [breakpoints]="{ '2960px': { width: '50vw' }, '920px': { width: '90vw' } }"
+>
   <ng-template let-message pTemplate="headless" let-closeFn="closeFn">
-    <section class="flex p-3 w-full surface-ground shadow-6" style="border-radius: 10px">
-      <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center gap-3 w-full">
+    <section
+      class="flex p-3 w-full surface-ground shadow-6"
+      style="border-radius: 10px"
+    >
+      <div
+        class="flex flex-column md:flex-row md:justify-content-between md:align-items-center gap-3 w-full"
+      >
         <p class="m-0 text-color">{{ message.detail }}</p>
         <div class="flex gap-3 align-items-center">
-          <p-button label="Reset" [text]="true" styleClass="text-color p-0" (click)="closeFn($event)"></p-button>
-          <button pButton class="py-2 px-3 p-button-success" label="Save Changes" type="button"></button>
+          <p-button
+            label="Reset"
+            [text]="true"
+            styleClass="text-color p-0"
+            (click)="closeFn($event)"
+          ></p-button>
+          <button
+            pButton
+            class="py-2 px-3 p-button-success"
+            label="Save Changes"
+            type="button"
+          ></button>
         </div>
       </div>
     </section>
