@@ -48,7 +48,7 @@
               {"input" :"src/app/themes/md-dark-deeppurple.css", "bundleName": "md-dark-deeppurple", "inject": false},
               {"input" :"src/app/themes/tailwind-light.css", "bundleName": "tailwind-light", "inject": false}
             ],
-            "scripts": []
+            "scripts": ["src/assets/imageMapResizer.min.js"]
           },
           "configurations": {
             "production": {
