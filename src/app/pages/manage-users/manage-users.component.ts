@@ -56,6 +56,7 @@ export class ManageUsersComponent {
         Validators.pattern(/@(student\.laverdad\.edu\.ph|laverdad\.edu\.ph)$/),
       ],
     ],
+    password: ['', Validators.required],
   });
 
   @ViewChild('dt') dt: Table | undefined;
@@ -79,6 +80,7 @@ export class ManageUsersComponent {
   }
 
   openNew() {
+    this.form.reset();
     this.user = {};
     this.submitted = false;
     this.userDialog = true;
@@ -189,4 +191,12 @@ export class ManageUsersComponent {
     }
     return id;
   }
+
+  generatePassword(){}
+
+  isObjectEmpty(obj: any): boolean {
+    return Object.keys(obj).length === 0 && obj.constructor === Object;
+  }
+  
 }
+

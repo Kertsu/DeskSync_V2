@@ -79,10 +79,7 @@
           <p-tableCheckbox [value]="user"></p-tableCheckbox>
         </td>
         <td>
-          <p-avatar
-            image="{{ user.avatar }}"
-            shape="circle"
-          ></p-avatar>
+          <p-avatar image="{{ user.avatar }}" shape="circle"></p-avatar>
         </td>
         <td>{{ user.username }}</td>
         <td>{{ user.email }}</td>
@@ -122,6 +119,7 @@
   header="User Details"
   [modal]="true"
   styleClass="p-fluid"
+  [breakpoints]="{ '375px': '90vw' }"
 >
   <ng-template pTemplate="content">
     <!-- <p-avatar image="{{user.avatar}}"
@@ -129,16 +127,57 @@
     <form [formGroup]="form">
       <div class="field">
         <label for="name">Name</label>
-        <input type="text"  formControlName="username" pInputText id="name" required autofocus />
+        <input
+          type="text"
+          formControlName="username"
+          pInputText
+          id="name"
+          required
+          autofocus
+        />
         <small class="p-error" *ngIf="submitted && !user.name"
           >Name is required.</small
         >
       </div>
       <div class="field">
         <label for="email">Email</label>
-        <input type="text" formControlName="email" pInputText id="email" required autofocus />
+        <input
+          type="text"
+          formControlName="email"
+          pInputText
+          id="email"
+          required
+          autofocus
+        />
         <small class="p-error" *ngIf="submitted && !user.email"
           >Email is required.</small
+        >
+      </div>
+      <div class="field"
+      *ngIf="isObjectEmpty(user)"
+      >
+        <label for="password">Password</label>
+        <div class="flex w-full gap-3">
+
+          <input
+            type="password"
+            formControlName="password"
+            pInputText
+            id="password"
+            required
+            autofocus
+          />
+          <button
+            pButton
+            pRipple
+            icon="pi pi-key"
+            class="p-button-primary"
+            label="Generate Password"
+            (click)="generatePassword()"
+          ></button>
+        </div>
+        <small class="p-error" *ngIf="submitted && !user.password"
+          >Password is required.</small
         >
       </div>
     </form>
