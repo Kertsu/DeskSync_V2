@@ -107,12 +107,11 @@ export class ManageUsersComponent {
   }
 
   editUser(user: any) {
-    
     this.form.patchValue({
       username: user.username,
-      email: user.email
+      email: user.email,
     });
-    
+
     this.user = { ...user };
     this.userDialog = true;
   }
@@ -192,11 +191,42 @@ export class ManageUsersComponent {
     return id;
   }
 
-  generatePassword(){}
+  generatePasswordAndCopy() {
+    const length = 10,
+      charset =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let retVal = '';
+
+    for (let i = 0, n = charset.length; i < length; ++i) {
+      retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+
+    this.copyToClipboard(retVal);
+
+    this.form.patchValue({
+      password: retVal,
+    });
+
+    return retVal;
+  }
+
+  copyToClipboard(text: string) {
+    const textarea = document.createElement('textarea');
+
+    textarea.value = text;
+
+    textarea.style.position = 'fixed';
+    textarea.style.left = '-9999px';
+
+    document.body.appendChild(textarea);
+
+    textarea.select();
+    document.execCommand('copy');
+
+    document.body.removeChild(textarea);
+  }
 
   isObjectEmpty(obj: any): boolean {
     return Object.keys(obj).length === 0 && obj.constructor === Object;
   }
-  
 }
-

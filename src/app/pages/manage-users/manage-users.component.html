@@ -173,7 +173,7 @@
             icon="pi pi-key"
             class="p-button-primary"
             label="Generate Password"
-            (click)="generatePassword()"
+            (click)="generatePasswordAndCopy()"
           ></button>
         </div>
         <small class="p-error" *ngIf="submitted && !user.password"
