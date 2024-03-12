@@ -15,6 +15,7 @@ import { UserService } from '../services/user.service';
 import { WebService } from '../services/web.service';
 import { Message } from 'primeng/api';
 import { MessageService } from '../utils/message.service';
+import { NetworkService } from '../services/network.service';
 
 @Component({
   selector: 'app-layout',
@@ -31,6 +32,7 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
   messages: Message[] = [];
   messageSubscription!: Subscription;
 
+  prevNetworkStatus: boolean | null = null;
   isLoading: boolean = false;
 
   @ViewChild(AppSidebarComponent) appSidebar!: AppSidebarComponent;
@@ -44,7 +46,8 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
     private socketService: SocketService,
     private userService: UserService,
     private webService: WebService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private networkService: NetworkService
   ) {
     this.overlayMenuOpenSubscription =
       this.layoutService.overlayOpen$.subscribe(() => {
@@ -177,7 +180,7 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
       this.menuOutsideClickListener();
     }
 
-    this.messages = []
+    this.messages = [];
   }
 
   ngOnInit(): void {
@@ -209,9 +212,34 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
           this.isLoading = false;
         }, 500);
 
-        const user = this.userService.getUser()
+        const user = this.userService.getUser();
         this.socketService.emit('live', user);
       },
+    });
+
+    this.networkService.isOnline().subscribe((res) => {
+      if (this.prevNetworkStatus !== null && res !== this.prevNetworkStatus) {
+        if (res) {
+          this.messages = [
+            {
+              severity: 'info',
+              life:10000,
+              summary: 'Your connection is restored',
+              icon: 'pi pi-wifi',
+            },
+          ];
+        } else {
+          this.messages = [
+            {
+              severity: 'info',
+              life:10000,
+              summary: 'You are currently offline',
+              icon: 'pi pi-globe',
+            },
+          ];
+        }
+      }
+      this.prevNetworkStatus = res;
     });
   }
 }

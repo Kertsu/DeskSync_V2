@@ -16,7 +16,7 @@ export class MessageService {
       severity,
       detail,
       summary,
-      life : 3000
+      life : 3000,
     }
     this.messageSubject.next([message])
   }
