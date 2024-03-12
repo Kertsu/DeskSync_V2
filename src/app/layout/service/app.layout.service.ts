@@ -1,5 +1,7 @@
-import { Injectable, effect, signal } from '@angular/core';
+import { Injectable, effect, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+declare const imageMapResize: any;
 
 export interface AppConfig {
     inputStyle: string;
@@ -32,6 +34,8 @@ export class LayoutService {
         scale: 14,
     };
 
+    router = inject(Router);
+    
     config = signal<AppConfig>(this._config);
 
     state: LayoutState = {
@@ -78,6 +82,12 @@ export class LayoutService {
         }
 
         if (this.isDesktop()) {
+            const route = this.router.url.split('/')[2]
+
+            if (route === 'book'){
+                this.resizeMap()
+            }
+
             this.state.staticMenuDesktopInactive =
                 !this.state.staticMenuDesktopInactive;
         } else {
@@ -156,4 +166,12 @@ export class LayoutService {
     changeScale(value: number) {
         document.documentElement.style.fontSize = `${value}px`;
     }
+
+    resizeMap(){
+
+        console.log('triggered')
+        setTimeout(() => {
+          imageMapResize();
+        }, 300);
+      }
 }
