@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UiService } from '../../services/ui.service';
 import { Subscription } from 'rxjs';
+import { MessageService } from '../../utils/message.service';
 declare const imageMapResize: any;
 
 interface Area {
@@ -29,7 +30,7 @@ export class Step1Component implements OnInit, OnDestroy{
     { id: 3, alt: 'Right-Wing Main Office', title: 'Right-Wing Main Office', coords: '1952,1694,2979,2984', shape: 'rect' },
   ];
 
-  constructor(private router: Router, private uiService: UiService) {
+  constructor(private router: Router, private uiService: UiService, private messageService: MessageService) {
     this.areas = [
       { name: 'Workstation', number: 1 },
       { name: 'Left-Wing Main Office', number: 2 },
@@ -52,7 +53,9 @@ export class Step1Component implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
+    if (this.formSubscription){
       this.formSubscription.unsubscribe()
+    }
   }
 
 
@@ -89,6 +92,10 @@ export class Step1Component implements OnInit, OnDestroy{
   }
 
   next(){
-
+    if(this.form.valid){
+      this.router.navigate(['hdbsv2/book/desk-area'])
+    }else{
+      this.messageService.addMessage('info', '', 'Area cannot be empty', 3000)
+    }
   }
 }

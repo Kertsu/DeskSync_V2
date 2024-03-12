@@ -110,6 +110,7 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
     this.messageSubscription = this.messageService
       .onAddMessage()
       .subscribe((res) => {
+        console.log(res)
         this.messages = res;
       });
   }
