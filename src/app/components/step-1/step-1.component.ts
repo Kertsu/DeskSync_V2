@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UiService } from '../../services/ui.service';
+import { Subscription } from 'rxjs';
 declare const imageMapResize: any;
 
 interface Area {
@@ -14,11 +15,13 @@ interface Area {
   templateUrl: './step-1.component.html',
   styleUrl: './step-1.component.css'
 })
-export class Step1Component implements OnInit{
+export class Step1Component implements OnInit, OnDestroy{
   areas!: Area[];
   form!: FormGroup;
   area: string = '';
   areaNumber!: number | undefined;
+
+  formSubscription!: Subscription;
 
   mapAreas = [
     { id: 1, alt: 'Workstation', title: 'Workstation', coords: '1024,33,2037,1684', shape: 'rect' },
@@ -40,13 +43,22 @@ export class Step1Component implements OnInit{
 
   ngOnInit(): void {
       this.resizeMap()
+
+      this.formSubscription = this.form.valueChanges.subscribe(res => {
+        if (res.selectedArea) {
+          this.area = res.selectedArea.name;
+        }
+      })
+  }
+
+  ngOnDestroy(): void {
+      this.formSubscription.unsubscribe()
   }
 
 
   handleSelectArea(area: number) {
     this.areaNumber = area;
     
-
     switch (area) {
       case 1:
         this.area = 'Workstation';
@@ -61,8 +73,6 @@ export class Step1Component implements OnInit{
     this.form
       .get('selectedArea')
       ?.setValue({ name: this.area, number: this.areaNumber });
-    
-      alert(area);
   }
 
 
@@ -70,5 +80,15 @@ export class Step1Component implements OnInit{
     setTimeout(() => {
       imageMapResize();
     }, 300);
+  }
+
+  reset(){
+    this.form.reset()
+    this.area = ''
+    this.areaNumber = undefined
+  }
+
+  next(){
+
   }
 }

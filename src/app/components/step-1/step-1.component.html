@@ -1,5 +1,11 @@
 <div class="w-full flex flex-column gap-3">
-    <form
+  <div
+    class="flex w-full gap-2 align-items-center justify-content-start surface-ground border-round px-3 py-1"
+  >
+    <i class="pi pi-info-circle" style="color: var(--primary-color)"></i>
+    <p class="text-color-secondary">You can directly choose an area on the map</p>
+  </div>
+  <form
     class="w-full flex flex-column-reverse justify-content-center align-items-center gap-3 md:flex-row-reverse lg:hidden"
     [formGroup]="form"
   >
@@ -13,22 +19,53 @@
   </form>
 
   <img
-      src="../../../assets/images/map/DeskSync Floor Plan.png"
-      usemap="#image-map"
-      class="w-full"
+    src="../../../assets/images/map/DeskSync Floor Plan.png"
+    usemap="#image-map"
+    class="w-full"
+  />
+
+  <map name="image-map">
+    <area
+      *ngFor="let area of mapAreas"
+      (click)="handleSelectArea(area.id)"
+      class="cursor-pointer"
+      target="_self"
+      [alt]="area.alt"
+      [title]="area.title"
+      [coords]="area.coords"
+      shape="{{ area.shape }}"
     />
+  </map>
 
-    <map  name="image-map">
-      <area
-        *ngFor="let area of mapAreas"
-        (click)="handleSelectArea(area.id)"
-        class="cursor-pointer"
-        target="_self"
-        [alt]="area.alt"
-        [title]="area.title"
-        [coords]="area.coords"
-        shape="{{ area.shape }}"
-      />
-    </map>
+  <div class="flex flex-column w-full surface-border border-round border-1 p-3">
+    <h3 class="m-0 text-color-secondary text-base">Area Info</h3>
+    <p-divider></p-divider>
 
+    <div class="flex flex-column gap-3">
+      <div class="flex flex-column gap-3">
+        <h5 class="text-color-secondary text-base m-0">Area:</h5>
+        <h3
+          class="text-base text-color-secondary m-0 surface-ground border-round p-2"
+        >
+          {{ area ? area : "Select an area above" }}
+        </h3>
+      </div>
+
+      <div class="flex justify-content-between align-items center">
+        <button
+          pButton
+          class="py-2 px-3 p-button-warning"
+          label="Reset"
+          type="button"
+          (click)="reset()"
+        ></button>
+        <button
+          pButton
+          class="py-2 px-3 p-button-success"
+          label="Next"
+          type="button"
+        ></button>
+      </div>
+    </div>
+  </div>
 </div>

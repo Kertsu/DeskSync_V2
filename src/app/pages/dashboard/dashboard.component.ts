@@ -38,9 +38,9 @@ export class DashboardComponent implements OnInit{
 
   recentActivities: any[] = []
 
-  // activeUsers: ActiveUser[] = [{"id":"65b480cd73497b0eecac836b","username":"Kertsu","email":"kurtddanielbigtas@student.laverdad.edu.ph","role":"superadmin","avatar":"http://res.cloudinary.com/drlztlr1m/image/upload/v1706356600/hzomg9luobx6v8lvxdng.jpg"}, {"id":"65be6e9e31c19ca1cf414b9f","username":"johnmarkfaeldonia","email":"johnmarkfaeldonia@student.laverdad.edu.ph","role":"user","avatar":"http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg"}, {"id":"65be7149289699e84d2b9a56","username":"jirehbelen","email":"jirehbelen@student.laverdad.edu.ph","role":"user","avatar":"http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg"}]
+  activeUsers: ActiveUser[] = [{"id":"65b480cd73497b0eecac836b","username":"Kertsu","email":"kurtddanielbigtas@student.laverdad.edu.ph","role":"superadmin","avatar":"http://res.cloudinary.com/drlztlr1m/image/upload/v1706356600/hzomg9luobx6v8lvxdng.jpg"}, {"id":"65be6e9e31c19ca1cf414b9f","username":"johnmarkfaeldonia","email":"johnmarkfaeldonia@student.laverdad.edu.ph","role":"user","avatar":"http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg"}, {"id":"65be7149289699e84d2b9a56","username":"jirehbelen","email":"jirehbelen@student.laverdad.edu.ph","role":"user","avatar":"http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg"}]
 
-  activeUsers: ActiveUser[] = []
+  // activeUsers: ActiveUser[] = []
 
   constructor(private socket: Socket, private cdr: ChangeDetectorRef) {
 
