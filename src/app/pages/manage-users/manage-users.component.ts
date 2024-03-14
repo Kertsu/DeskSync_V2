@@ -3,6 +3,7 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { ParamsBuilderService } from '../../services/params-builder.service';
 @Component({
   selector: 'app-manage-users',
   templateUrl: './manage-users.component.html',
@@ -72,7 +73,8 @@ export class ManageUsersComponent {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private paramsBuilder: ParamsBuilderService
   ) {}
 
   ngOnInit() {
@@ -241,29 +243,11 @@ export class ManageUsersComponent {
   }
 
   loadUsers(event: any) {
-
-    let params = new HttpParams();
-
-    if (event.filters) {
-      params = params.set('filters', JSON.stringify(event.filters));
-    }
-    if (event.first !== undefined) {
-      params = params.set('first', event.first);
-    }
-    if (event.rows !== undefined) {
-      params = params.set('rows', event.rows);
-    }
-    if (event.sortField) {
-      params = params.set('sortField', event.sortField);
-    }
-    if (event.sortOrder !== undefined) {
-      params = params.set('sortOrder', event.sortOrder);
-    }
-  
+    console.log(event)
+    const params = this.paramsBuilder.buildParams(event)
     this.loading = true;
     this.http.get('http://localhost:8000/api/users', { params }).subscribe((res: any) => {
       if (res.success){
-        console.log(res)
         this.users = res.users
         this.totalRecords = res.totalDocuments
         this.loading =false
