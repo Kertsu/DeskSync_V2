@@ -30,11 +30,19 @@
     [globalFilterFields]="['username', 'email', 'role', 'status']"
     [tableStyle]="{ 'min-width': '75rem' }"
     [rowsPerPageOptions]="[10, 25, 50]"
-    [(selection)]="selectedUsers"
     [rowHover]="true"
     dataKey="id"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [showCurrentPageReport]="true"
+
+    [lazy]="true"
+    (onLazyLoad)="loadUsers($event)"
+    [selection]="selectedUsers"
+    (selectionChange)="onSelectionChange($event)"
+    [selectAll]="selectAll"
+    (selectAllChange)="onSelectAllChange($event)"
+    [totalRecords]="totalRecords"
+    [loading]="loading"
   >
     <ng-template pTemplate="caption">
       <div

@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient, HttpParams } from '@angular/common/http';
 @Component({
   selector: 'app-manage-users',
   templateUrl: './manage-users.component.html',
@@ -11,40 +12,46 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ManageUsersComponent {
   userDialog: boolean = false;
 
-  users: any[] = [
-    {
-      id: '65b480cd73497b0eecac836b',
-      username: 'Kertsu',
-      email: 'kurtddanielbigtas@student.laverdad.edu.ph',
-      role: 'superadmin',
-      avatar:
-        'http://res.cloudinary.com/drlztlr1m/image/upload/v1706356600/hzomg9luobx6v8lvxdng.jpg',
-    },
-    {
-      id: '65be6e9e31c19ca1cf414b9f',
-      username: 'johnmarkfaeldonia',
-      email: 'johnmarkfaeldonia@student.laverdad.edu.ph',
-      role: 'user',
-      avatar:
-        'http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg',
-    },
-    {
-      id: '65be7149289699e84d2b9a56',
-      username: 'jirehbelen',
-      email: 'jirehbelen@student.laverdad.edu.ph',
-      role: 'user',
-      avatar:
-        'http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg',
-    },
-  ];
+  // users: any[] = [
+  //   {
+  //     id: '65b480cd73497b0eecac836b',
+  //     username: 'Kertsu',
+  //     email: 'kurtddanielbigtas@student.laverdad.edu.ph',
+  //     role: 'superadmin',
+  //     avatar:
+  //       'http://res.cloudinary.com/drlztlr1m/image/upload/v1706356600/hzomg9luobx6v8lvxdng.jpg',
+  //   },
+  //   {
+  //     id: '65be6e9e31c19ca1cf414b9f',
+  //     username: 'johnmarkfaeldonia',
+  //     email: 'johnmarkfaeldonia@student.laverdad.edu.ph',
+  //     role: 'user',
+  //     avatar:
+  //       'http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg',
+  //   },
+  //   {
+  //     id: '65be7149289699e84d2b9a56',
+  //     username: 'jirehbelen',
+  //     email: 'jirehbelen@student.laverdad.edu.ph',
+  //     role: 'user',
+  //     avatar:
+  //       'http://res.cloudinary.com/drlztlr1m/image/upload/v1706979188/oxbsppubd3rsabqwfxsr.jpg',
+  //   },
+  // ];
+
+  users!: any[];
 
   user!: any;
 
-  selectedUsers!: any[] | null;
+  selectedUsers!: any[];
 
   submitted: boolean = false;
 
   roles!: any[];
+
+  loading: boolean = false;
+  totalRecords!: number;
+  selectAll: boolean = false;
 
   form = this.fb.group({
     username: ['', Validators.required],
@@ -64,7 +71,8 @@ export class ManageUsersComponent {
   constructor(
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -73,6 +81,8 @@ export class ManageUsersComponent {
       { label: 'User', value: 'user' },
       { label: 'Office Manager', value: 'om' },
     ];
+
+    
   }
 
   applyFilterGlobal($event: any, stringVal: any) {
@@ -95,7 +105,7 @@ export class ManageUsersComponent {
         this.users = this.users.filter(
           (val) => !this.selectedUsers?.includes(val)
         );
-        this.selectedUsers = null;
+        this.selectedUsers = [];
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
@@ -172,7 +182,7 @@ export class ManageUsersComponent {
   findIndexById(id: string): number {
     let index = -1;
     for (let i = 0; i < this.users.length; i++) {
-      if (this.users[i].id === id) {
+      if (this.users[i]._id === id) {
         index = i;
         break;
       }
@@ -229,4 +239,58 @@ export class ManageUsersComponent {
   isObjectEmpty(obj: any): boolean {
     return Object.keys(obj).length === 0 && obj.constructor === Object;
   }
+
+  loadUsers(event: any) {
+
+    let params = new HttpParams();
+
+    if (event.filters) {
+      params = params.set('filters', JSON.stringify(event.filters));
+    }
+    if (event.first !== undefined) {
+      params = params.set('first', event.first);
+    }
+    if (event.rows !== undefined) {
+      params = params.set('rows', event.rows);
+    }
+    if (event.sortField) {
+      params = params.set('sortField', event.sortField);
+    }
+    if (event.sortOrder !== undefined) {
+      params = params.set('sortOrder', event.sortOrder);
+    }
+  
+    this.loading = true;
+    this.http.get('http://localhost:8000/api/users', { params }).subscribe((res: any) => {
+      if (res.success){
+        console.log(res)
+        this.users = res.users
+        this.totalRecords = res.totalDocuments
+        this.loading =false
+      }
+    });
+
+  }
+
+  onSelectionChange(value = []) {
+    this.selectAll = value.length === this.totalRecords;
+    this.selectedUsers = value;
+  }
+
+  onSelectAllChange(event: any) {
+    const checked = event.checked;
+
+    if (checked) {
+      this.http.get('http://localhost:8000/api/users').subscribe((res: any) => {
+        if (res.success){
+          console.log(res)
+          this.selectedUsers = res.users;
+          this.selectAll = true;
+        }
+      });
+    } else {
+      this.selectedUsers = [];
+      this.selectAll = false;
+    }
+}
 }
