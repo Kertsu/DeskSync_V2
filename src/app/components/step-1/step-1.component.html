@@ -1,4 +1,6 @@
-<div class="w-full flex flex-column gap-3 lg:flex-row">
+<div class="w-full flex flex-column gap-3">
+  <div class="w-full flex-row flex gap-3">
+
   <div class="flex gap-3 flex-column lg:w-7">
     <div
       class="flex w-full gap-2 align-items-center justify-content-start surface-ground border-round px-3 py-1"
@@ -39,11 +41,11 @@
         shape="{{ area.shape }}"
       />
     </map>
+    
   </div>
-
   <div class="flex flex-column gap-3 w-full lg:w-5">
-    <div style="min-height: 22rem;"
-      class="hidden lg:flex justify-content-center align-items-center p-3 w-full max-h-22rem border-1 surface-border border-round"
+    <div style="height: 97%;"
+      class="hidden lg:flex justify-content-center align-items-center p-3 w-full border-1 surface-border border-round"
     >
       <img
         style="max-width: 90%; object-fit: contain;"
@@ -62,7 +64,12 @@
         alt=""
       />
     </div>
-    <div
+    
+  </div>
+</div>
+
+  
+  <div
       class="flex flex-column w-full surface-border border-round border-1 p-3"
     >
       <h3 class="m-0 text-color-secondary text-base">Area Info</h3>
@@ -96,5 +103,4 @@
         </div>
       </div>
     </div>
-  </div>
 </div>
