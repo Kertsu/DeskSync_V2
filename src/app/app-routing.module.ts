@@ -29,13 +29,10 @@ const routes: Routes = [
     component: LoginComponent, canActivate:[authGuard]
   },
   {
-    path: 'verification', component: VerificationComponent, canActivate: [authGuard]
+    path: 'reset-password/:token/:id', component: ChangePasswordComponent, canActivate: [authGuard]
   },
   {
-    path: 'change-password', component: ChangePasswordComponent, canActivate: [authGuard]
-  },
-  {
-    path: 'send-otp', component: SendOtpComponent, canActivate: [authGuard]
+    path: 'forgot-password', component: SendOtpComponent, canActivate: [authGuard]
   },
   {
     path: 'changed-password', component: SuccessResetComponent, canActivate: [authGuard]

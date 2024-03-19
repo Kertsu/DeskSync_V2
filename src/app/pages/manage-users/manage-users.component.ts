@@ -105,7 +105,8 @@ export class ManageUsersComponent {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.users = this.users.filter(
-          (val) => !this.selectedUsers?.includes(val)
+          
+          (val) => { console.log(val);return this.selectedUsers?.includes(val);}
         );
         this.selectedUsers = [];
         this.messageService.add({
