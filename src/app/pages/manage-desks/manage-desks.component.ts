@@ -54,6 +54,11 @@ export class ManageDesksComponent {
   submitted: boolean = false;
 
   form: FormGroup;
+  areaForm: FormGroup;
+
+  loading: boolean = false;
+  totalRecords!: number;
+  selectAll: boolean = false;
 
   @ViewChild('dt') dt: Table | undefined;
 
@@ -65,10 +70,13 @@ export class ManageDesksComponent {
     this.form = new FormGroup({
       selectedArea: new FormControl(null, [Validators.required]),
     });
+    this.areaForm = new FormGroup({
+      selectedArea: new FormControl(null, [Validators.required]),
+    });
 
     this.desksForm = this.fb.group({});
 
-    this.desks.forEach(desk => {
+    this.desks.forEach((desk) => {
       this.desksForm.addControl(desk.id, new FormControl(desk.rating));
     });
   }
@@ -79,6 +87,8 @@ export class ManageDesksComponent {
       { name: 'Left-Wing Main Office', number: 2 },
       { name: 'Right-Wing Main Office', number: 3 },
     ];
+
+    this.areaForm.valueChanges.subscribe((res) => console.log(res));
   }
 
   applyFilterGlobal($event: any, stringVal: any) {
@@ -194,5 +204,31 @@ export class ManageDesksComponent {
       id += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return id;
+  }
+
+  loadDesks(event: any) {
+    console.log(event);
+  }
+
+  onSelectionChange(value = []) {
+    this.selectAll = value.length === this.totalRecords;
+    this.selectedDesks = value;
+  }
+
+  onSelectAllChange(event: any) {
+    const checked = event.checked;
+
+    if (checked) {
+      // this.http.get('http://localhost:8000/api/users').subscribe((res: any) => {
+      //   if (res.success) {
+      //     console.log(res);
+      //     this.selectedDesks = res.users;
+      //     this.selectAll = true;
+      //   }
+      // });
+    } else {
+      this.selectedDesks = [];
+      this.selectAll = false;
+    }
   }
 }

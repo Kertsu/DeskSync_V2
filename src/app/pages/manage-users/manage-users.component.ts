@@ -4,6 +4,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ParamsBuilderService } from '../../services/params-builder.service';
+import { WebService } from '../../services/web.service';
 @Component({
   selector: 'app-manage-users',
   templateUrl: './manage-users.component.html',
@@ -74,7 +75,8 @@ export class ManageUsersComponent {
     private confirmationService: ConfirmationService,
     private fb: FormBuilder,
     private http: HttpClient,
-    private paramsBuilder: ParamsBuilderService
+    private paramsBuilder: ParamsBuilderService,
+    private webService: WebService
   ) {}
 
   ngOnInit() {
@@ -83,8 +85,6 @@ export class ManageUsersComponent {
       { label: 'User', value: 'user' },
       { label: 'Office Manager', value: 'om' },
     ];
-
-    
   }
 
   applyFilterGlobal($event: any, stringVal: any) {
@@ -104,10 +104,10 @@ export class ManageUsersComponent {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.users = this.users.filter(
-          
-          (val) => { console.log(val);return this.selectedUsers?.includes(val);}
-        );
+        this.users = this.users.filter((val) => {
+          console.log(val);
+          return this.selectedUsers?.includes(val);
+        });
         this.selectedUsers = [];
         this.messageService.add({
           severity: 'success',
@@ -244,17 +244,17 @@ export class ManageUsersComponent {
   }
 
   loadUsers(event: any) {
-    console.log(event)
-    const params = this.paramsBuilder.buildParams(event)
+    console.log(event);
+    const params = this.paramsBuilder.buildParams(event);
     this.loading = true;
-    this.http.get('http://localhost:8000/api/users', { params }).subscribe((res: any) => {
-      if (res.success){
-        this.users = res.users
-        this.totalRecords = res.totalDocuments
-        this.loading =false
-      }
-    });
-
+    this.webService.getUsers(params)
+      .subscribe((res: any) => {
+        if (res.success) {
+          this.users = res.users;
+          this.totalRecords = res.totalDocuments;
+          this.loading = false;
+        }
+      });
   }
 
   onSelectionChange(value = []) {
@@ -266,9 +266,9 @@ export class ManageUsersComponent {
     const checked = event.checked;
 
     if (checked) {
-      this.http.get('http://localhost:8000/api/users').subscribe((res: any) => {
-        if (res.success){
-          console.log(res)
+      this.webService.getUsers().subscribe((res: any) => {
+        if (res.success) {
+          console.log(res);
           this.selectedUsers = res.users;
           this.selectAll = true;
         }
@@ -277,5 +277,5 @@ export class ManageUsersComponent {
       this.selectedUsers = [];
       this.selectAll = false;
     }
-}
+  }
 }

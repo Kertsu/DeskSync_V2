@@ -22,4 +22,10 @@ export class WebService {
     const page = Math.floor(skip / limit) + 1;
     return this.http.get(`${this.baseUserURL}/self/notifications?page=${page}&limit=${limit}`);
   }
+
+
+  getUsers(params?: any)
+  {
+    return this.http.get(`${this.baseUserURL}`, {params})
+  }
 }

@@ -27,7 +27,7 @@
     [value]="users"
     [rows]="10"
     [paginator]="true"
-    [globalFilterFields]="['username', 'email', 'role', 'status']"
+    [globalFilterFields]="['username', 'email', 'role', 'isDisabled']"
     [tableStyle]="{ 'min-width': '75rem' }"
     [rowsPerPageOptions]="[10, 25, 50]"
     [rowHover]="true"
@@ -75,8 +75,8 @@
         <th pSortableColumn="role" style="min-width: 10rem">
           Role <p-sortIcon field="role"></p-sortIcon>
         </th>
-        <th pSortableColumn="status">
-          Status <p-sortIcon field="status"></p-sortIcon>
+        <th pSortableColumn="isDisabled">
+          Status <p-sortIcon field="isDisabled"></p-sortIcon>
         </th>
         <th></th>
       </tr>

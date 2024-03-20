@@ -21,12 +21,16 @@
         ></button>
       </ng-template>
       <ng-template pTemplate="right">
-        <p-dropdown
-            [style]="{minWidth: '220px'}"    
-        [options]="areas"
-            optionLabel="name"
-            placeholder="Select an Area"
+        <form [formGroup]="areaForm">
+          <p-dropdown
+          [style]="{minWidth: '220px'}"    
+          [options]="areas"
+          optionLabel="name"
+          [showClear]="true"
+          formControlName="selectedArea"
+          placeholder="Select an Area"
           ></p-dropdown>
+        </form>
       </ng-template>
     </p-toolbar>
   
@@ -43,6 +47,15 @@
       dataKey="id"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       [showCurrentPageReport]="true"
+
+      [lazy]="true"
+      (onLazyLoad)="loadDesks($event)"
+      [selection]="selectedDesks"
+      (selectionChange)="onSelectionChange($event)"
+      [selectAll]="selectAll"
+      (selectAllChange)="onSelectAllChange($event)"
+      [totalRecords]="totalRecords"
+      [loading]="loading"
     >
       <ng-template pTemplate="caption">
         <div
