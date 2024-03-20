@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { WebService } from '../../services/web.service';
+import { ParamsBuilderService } from '../../services/params-builder.service';
 @Component({
   selector: 'app-manage-desks',
   templateUrl: './manage-desks.component.html',
@@ -20,32 +22,34 @@ export class ManageDesksComponent {
 
   desksForm: FormGroup;
 
-  desks: any[] = [
-    {
-      id: '657d34368747ff99f36bb96e',
-      title: 'Hotdesk 8',
-      rating: 2,
-      deskNumber: 8,
-      workspaceEssentials: ['Mini Fridge', 'Whiteboard', 'Under-Desk Storage'],
-      status: 'UNAVAILABLE',
-    },
-    {
-      id: '657d34368747ff99f36bb98e',
-      title: 'Hotdesk 40',
-      rating: 4,
-      deskNumber: 40,
-      workspaceEssentials: ['Personalized Nameplate', 'Cubicle Privacy Screen'],
-      status: 'UNAVAILABLE',
-    },
-    {
-      id: '657d34368747ff99f36bb979',
-      title: 'Hotdesk 19',
-      rating: 1,
-      deskNumber: 19,
-      workspaceEssentials: ['Cubicle Mirror', 'Footrest', 'Task Lighting'],
-      status: 'UNAVAILABLE',
-    },
-  ];
+  // desks: any[] = [
+  //   {
+  //     id: '657d34368747ff99f36bb96e',
+  //     title: 'Hotdesk 8',
+  //     rating: 2,
+  //     deskNumber: 8,
+  //     workspaceEssentials: ['Mini Fridge', 'Whiteboard', 'Under-Desk Storage'],
+  //     status: 'UNAVAILABLE',
+  //   },
+  //   {
+  //     id: '657d34368747ff99f36bb98e',
+  //     title: 'Hotdesk 40',
+  //     rating: 4,
+  //     deskNumber: 40,
+  //     workspaceEssentials: ['Personalized Nameplate', 'Cubicle Privacy Screen'],
+  //     status: 'UNAVAILABLE',
+  //   },
+  //   {
+  //     id: '657d34368747ff99f36bb979',
+  //     title: 'Hotdesk 19',
+  //     rating: 1,
+  //     deskNumber: 19,
+  //     workspaceEssentials: ['Cubicle Mirror', 'Footrest', 'Task Lighting'],
+  //     status: 'UNAVAILABLE',
+  //   },
+  // ];
+
+  desks: any[] = [];
 
   desk!: any;
 
@@ -65,7 +69,9 @@ export class ManageDesksComponent {
   constructor(
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private webService: WebService,
+    private paramsBuilder: ParamsBuilderService
   ) {
     this.form = new FormGroup({
       selectedArea: new FormControl(null, [Validators.required]),
@@ -207,7 +213,14 @@ export class ManageDesksComponent {
   }
 
   loadDesks(event: any) {
-    console.log(event);
+    console.log(event)
+    this.loading = true;
+    const params = this.paramsBuilder.buildParams(event);
+    this.webService.getDesks(params).subscribe((res: any) => {
+      this.desks = res.desks;
+      this.totalRecords = res.totalDocuments;
+      this.loading = false;
+    });
   }
 
   onSelectionChange(value = []) {
@@ -219,13 +232,13 @@ export class ManageDesksComponent {
     const checked = event.checked;
 
     if (checked) {
-      // this.http.get('http://localhost:8000/api/users').subscribe((res: any) => {
-      //   if (res.success) {
-      //     console.log(res);
-      //     this.selectedDesks = res.users;
-      //     this.selectAll = true;
-      //   }
-      // });
+      this.webService.getDesks('http://localhost:8000/api/hotdesks').subscribe((res: any) => {
+        if (res.success) {
+          console.log(res);
+          this.selectedDesks = res.desks;
+          this.selectAll = true;
+        }
+      });
     } else {
       this.selectedDesks = [];
       this.selectAll = false;

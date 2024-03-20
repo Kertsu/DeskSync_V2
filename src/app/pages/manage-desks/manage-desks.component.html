@@ -20,7 +20,7 @@
           [disabled]="!selectedDesks || !selectedDesks.length"
         ></button>
       </ng-template>
-      <ng-template pTemplate="right">
+      <!-- <ng-template pTemplate="right">
         <form [formGroup]="areaForm">
           <p-dropdown
           [style]="{minWidth: '220px'}"    
@@ -31,7 +31,7 @@
           placeholder="Select an Area"
           ></p-dropdown>
         </form>
-      </ng-template>
+      </ng-template> -->
     </p-toolbar>
   
     <p-table
@@ -39,7 +39,7 @@
       [value]="desks"
       [rows]="10"
       [paginator]="true"
-      [globalFilterFields]="['deskname', 'email', 'role', 'status']"
+      [globalFilterFields]="['deskNumber']"
       [tableStyle]="{ 'min-width': '75rem' }"
       [rowsPerPageOptions]="[10, 25, 50]"
       [(selection)]="selectedDesks"
@@ -67,7 +67,7 @@
             <input
               pInputText
               type="text"
-              (input)="applyFilterGlobal($event, 'contains')"
+              (input)="applyFilterGlobal($event, 'equals')"
               placeholder="Search..."
             />
           </span>
@@ -78,7 +78,7 @@
           <th style="width: 4rem">
             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
           </th>
-          <th>Desk</th>
+          <th pSortableColumn="deskNumber">Desk <p-sortIcon field="deskNumber"></p-sortIcon></th>
           <th >
             Area
           </th>
@@ -88,9 +88,9 @@
           <th >
             Workspace Essentials
           </th>
-          <th >
+          <!-- <th >
             Rating
-          </th>
+          </th> -->
           <th >
             Status
           </th>
@@ -114,12 +114,12 @@
                   }}</p-chip>
             </div>
           </td>
-          <td>
+          <!-- <td>
           <form [formGroup]="desksForm">
             <p-rating [stars]="5" [formControlName]="desk.id" [readonly]="true" [cancel]="false"></p-rating>
         </form>
 
-          </td>
+          </td> -->
           <td>
             {{ desk.status }}
           </td>
