@@ -46,6 +46,8 @@ import { TabViewModule } from 'primeng/tabview';
 import { ImageModule } from 'primeng/image';
 import { PasswordModule } from 'primeng/password';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { PanelModule } from 'primeng/panel';
+import {AccordionModule} from 'primeng/accordion'
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
@@ -155,6 +157,8 @@ const config: SocketIoConfig = {
     ImageModule,
     PasswordModule,
     InputTextareaModule,
+    PanelModule,
+    AccordionModule,
     SocketIoModule.forRoot(config),
   ],
   providers: [provideHttpClient(withInterceptors([authInterceptor]))],

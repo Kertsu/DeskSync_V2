@@ -1,1 +1,87 @@
-<p>step-2 works!</p>
+<div class="w-full flex flex-column gap-3 md:flex-row">
+  <div class="flex gap-3 flex-column lg:w-7">
+    <div
+      class="flex w-full gap-2 align-items-center justify-content-start surface-ground border-round px-3 py-1"
+    >
+      <i class="pi pi-info-circle" style="color: var(--primary-color)"></i>
+      <p class="text-color-secondary">
+        You can directly choose an area on the map
+      </p>
+    </div>
+    <ng-container *ngFor="let areaData of areaDataList">
+      <div *ngIf="area === areaData.id" class="w-full">
+        <img class="w-full" [src]="areaData.imagePath" usemap="#image-map" />
+        <map name="image-map">
+          <ng-container *ngFor="let desk of areaData.desks">
+            <area
+              class="cursor-pointer"
+              target="_self"
+              [alt]="desk.alt"
+              [title]="desk.title"
+              [coords]="desk.coords"
+              shape="rect"
+              (click)="handleSelectDesk(desk)"
+            />
+          </ng-container>
+        </map>
+      </div>
+    </ng-container>
+  </div>
+
+  <p-divider styleClass="md:hidden"></p-divider>
+
+  <div class="w-full flex flex-column gap-3 lg:w-5">
+    <div class="w-full flex flex-column gap-3">
+      <p-dropdown styleClass="w-full"></p-dropdown>
+      <p-calendar
+        styleClass="w-full"
+        [touchUI]="true"
+        [showIcon]="true"
+      ></p-calendar>
+      <div class="flex justify-content-between align-items center">
+        <button
+          pButton
+          class="py-2 px-3 p-button-info"
+          label="Back"
+          type="button"
+        ></button>
+        <button
+          pButton
+          class="py-2 px-3 p-button-warning"
+          label="Reset"
+          type="button"
+        ></button>
+      </div>
+      <div
+        class="flex flex-column w-full surface-border border-round border-1 p-3 gap-3"
+      >
+        <div class="w-full flex justify-content-between align-items-center pb-3 border-bottom-1 surface-border">
+          <h5 class="text-color-secondary text-base m-0">Hotdesk 1</h5>
+          <p-tag [severity]="'danger'">Unavailable</p-tag>
+        </div>
+        <div class="max-h-10rem h-10rem">
+          <img
+            class="w-full"
+            style="object-fit: contain; max-height: 100%"
+            [src]="'../../assets/images/map/individual/1.png'"
+            alt="Hotdesk"
+          />
+        </div>
+
+        <div class="w-full flex flex-column gap-3">
+          <p-accordion>
+            <p-accordionTab header="Workspace Essentials">
+              <div class="flex w-full gap-1 flex-column lg:flex-row">
+                <p-chip styleClass="text-xs" label="Cubicle Mirror"></p-chip>
+                <p-chip styleClass="text-xs" label="Cubicle Mirror"></p-chip>
+                <p-chip styleClass="text-xs" label="Cubicle Mirror"></p-chip>
+              </div>
+            </p-accordionTab>
+          </p-accordion>
+        </div>
+        
+        <p-button styleClass="w-full py-2 px-3 p-button-info" label="Book for this desk" icon="pi pi-calendar-plus"></p-button>
+      </div>
+    </div>
+  </div>
+</div>
