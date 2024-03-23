@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChangePasswordComponent } from './change-password.component';
+import { SendOtpComponent } from './forgot-password.component';
 
-describe('ChangePasswordComponent', () => {
-  let component: ChangePasswordComponent;
-  let fixture: ComponentFixture<ChangePasswordComponent>;
+describe('SendOtpComponent', () => {
+  let component: SendOtpComponent;
+  let fixture: ComponentFixture<SendOtpComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ChangePasswordComponent]
+      declarations: [SendOtpComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ChangePasswordComponent);
+    fixture = TestBed.createComponent(SendOtpComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
