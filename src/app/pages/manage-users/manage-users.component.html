@@ -126,7 +126,14 @@
         <!-- <td>
           <p-avatar image="{{ user.avatar }}" shape="circle"></p-avatar>
         </td> -->
-        <td>{{ user.username }}</td>
+        <td>
+          
+          <div class="flex justify-content-start align-items-center gap-2">
+            <p-avatar 
+              [image]="user.avatar"
+              shape="circle"
+            ></p-avatar> {{user.username}}
+        </div></td>
         <td>{{ user.email }}</td>
         <td>{{ user.role.charAt(0).toUpperCase() + user.role.slice(1) }}</td>
         <td>

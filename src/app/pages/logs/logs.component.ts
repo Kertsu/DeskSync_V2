@@ -108,7 +108,7 @@ export class LogsComponent implements OnInit {
   ngOnInit() {
 
     this.statuses = [
-      { label: 'Failure', value: 'failure' },
+      { label: 'Failure', value: 'failed' },
       { label: 'Success', value: 'success' },
   ];
 

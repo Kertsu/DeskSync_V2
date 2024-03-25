@@ -15,7 +15,7 @@
     [rows]="10"
     [totalRecords]="totalRecords"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [rowsPerPageOptions]="[10, 25, 50]"
+    [rowsPerPageOptions]="[10, 25, 50, 100]"
     [globalFilterFields]="[
         'createdAt','email','actionType','actionDetails','ipAddress','status','additionalContext'
     ]"
@@ -87,13 +87,16 @@
             <p-columnFilter type="text" field="ipAddress"></p-columnFilter>
         </th>
         <th>
-            <p-columnFilter field="status" matchMode="equals" [showMenu]="true">
-                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                    <p-dropdown [formControl]="selectedStatus" [options]="statuses" (onChange)="filter($event.value)" placeholder="Any">
-                    </p-dropdown>
-                </ng-template>
-            </p-columnFilter>
-        </th>
+          <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+              <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                  <p-dropdown [formControl]="selectedStatus" [options]="statuses" (onChange)="filter($event.value)" placeholder="Any" [showClear]="true">
+                      <ng-template let-option pTemplate="item">
+                          <p-tag [value]="option.label"></p-tag>
+                      </ng-template>
+                  </p-dropdown>
+              </ng-template>
+          </p-columnFilter>
+      </th>
         <th>
             <p-columnFilter type="text" field="additionalContext"></p-columnFilter>
         </th>
