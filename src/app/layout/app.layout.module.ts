@@ -25,6 +25,7 @@ import { SpeedDialModule } from 'primeng/speeddial';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FileUploadModule } from 'primeng/fileupload';
+import { RatingModule } from 'primeng/rating';
 @NgModule({
     declarations: [
         AppMenuitemComponent,
@@ -54,7 +55,8 @@ import { FileUploadModule } from 'primeng/fileupload';
         SpeedDialModule,
         DialogModule,
         InputTextareaModule,
-        FileUploadModule
+        FileUploadModule,
+        RatingModule
     ],
     exports: [AppLayoutComponent]
 })

@@ -16,7 +16,7 @@ import { WebService } from '../services/web.service';
 import { Message } from 'primeng/api';
 import { MessageService } from '../utils/message.service';
 import { NetworkService } from '../services/network.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-layout',
@@ -36,8 +36,9 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
   prevNetworkStatus: boolean | null = null;
   isLoading: boolean = false;
   feedbackForm!: FormGroup;
+  ratingForm!: FormGroup;
 
-  justFinished: boolean = false;
+  justFinished: boolean = true;
 
   uploadedFiles: any[] = [];
 
@@ -221,6 +222,9 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
   ngOnInit(): void {
     this.feedbackForm = this.fb.group({
       feedback: ['', [Validators.maxLength(100)]]
+    })
+    this.ratingForm = this.fb.group({
+      rating: new FormControl(null)
     })
     this.isLoading = true;
 
