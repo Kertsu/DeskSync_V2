@@ -25,7 +25,7 @@
       <img
         src="../../../assets/images/map/DeskSync Floor Plan.png"
         usemap="#image-map"
-        class="w-full"
+        class="w-full shadow-4"
       />
 
       <map name="image-map">
@@ -50,7 +50,7 @@
         <img
           style="max-width: 90%; object-fit: contain"
           *ngIf="areaNumber !== undefined"
-          class="max-h-full mx-auto"
+          class="max-h-full mx-auto shadow-4"
           [src]="
             '../../../assets/images/map/Area ' + areaNumber + ' Numbered.png'
           "
@@ -59,7 +59,7 @@
         <img
           style="max-width: 90%"
           *ngIf="areaNumber === undefined"
-          class="mx-auto"
+          class="mx-auto shadow-4"
           [src]="'../../../assets/images/map/no-image.jpg'"
           alt=""
         />

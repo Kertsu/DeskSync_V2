@@ -193,4 +193,9 @@ export class ManageDeskUnavailabilitiesComponent {
     }
     return id;
   }
+
+  getImage(unavailability:any){
+    
+    return `../../assets/images/map/individual/${unavailability.deskNumber}.png`
+  }
 }

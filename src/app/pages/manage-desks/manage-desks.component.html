@@ -106,7 +106,7 @@
             {{ desk.title }}
           </td>
           <td>{{getArea(desk.area)}}</td>
-          <td><img class="h-4rem" style="object-fit: contain;" [src]="getImage(desk)" alt="Hotdesk"></td>
+          <td><img class="h-4rem shadow-4" style="object-fit: contain;" [src]="getImage(desk)" alt="Hotdesk"></td>
           <td>
             <div class="flex flex-column justify-content-start align-items-start gap-2">
                 <p-chip *ngFor="let essentials of desk.workspaceEssentials">{{

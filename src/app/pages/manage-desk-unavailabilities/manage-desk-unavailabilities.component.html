@@ -69,7 +69,7 @@
           <td>
            {{unavailability.deskNumber}}
           </td>
-          <td>--</td>
+          <td><img class="h-4rem shadow-4" style="object-fit: contain;" [src]="getImage(unavailability)" alt="Hotdesk"></td>
           <td>{{ unavailability.date | date : "mediumDate" }}</td>
          
           <td>

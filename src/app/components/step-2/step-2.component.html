@@ -10,7 +10,7 @@
     </div>
     <ng-container *ngFor="let areaData of areaDataList">
       <div *ngIf="area === areaData.id" class="w-full">
-        <img class="w-full lg:max-h-30rem" style="object-fit: contain;" [src]="areaData.imagePath" usemap="#image-map" />
+        <img class="w-full lg:max-h-30rem shadow-4" style="object-fit: contain;" [src]="areaData.imagePath" usemap="#image-map" />
         <map name="image-map">
           <ng-container *ngFor="let desk of areaData.desks">
             <area
@@ -61,7 +61,7 @@
         </div>
         <div class="max-h-10rem h-10rem">
           <img
-            class="w-full"
+            class="w-full shadow-4"
             style="object-fit: contain; max-height: 100%"
             [src]="'../../assets/images/map/individual/1.png'"
             alt="Hotdesk"
