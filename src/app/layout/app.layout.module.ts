@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';
@@ -21,7 +21,10 @@ import {OverlayPanelModule} from 'primeng/overlaypanel'
 import { MessagesModule } from 'primeng/messages';
 import { TableModule } from 'primeng/table';
 import { ProgressBarModule } from 'primeng/progressbar';
-
+import { SpeedDialModule } from 'primeng/speeddial';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { FileUploadModule } from 'primeng/fileupload';
 @NgModule({
     declarations: [
         AppMenuitemComponent,
@@ -34,7 +37,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
     imports: [
         BrowserModule,
         TableModule,
-        FormsModule,
+        ReactiveFormsModule,
         HttpClientModule,
         BrowserAnimationsModule,
         InputTextModule,
@@ -47,7 +50,11 @@ import { ProgressBarModule } from 'primeng/progressbar';
         RouterModule,
         OverlayPanelModule,
         AppConfigModule,
-        ProgressBarModule
+        ProgressBarModule,
+        SpeedDialModule,
+        DialogModule,
+        InputTextareaModule,
+        FileUploadModule
     ],
     exports: [AppLayoutComponent]
 })

@@ -16,6 +16,7 @@ import { WebService } from '../services/web.service';
 import { Message } from 'primeng/api';
 import { MessageService } from '../utils/message.service';
 import { NetworkService } from '../services/network.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-layout',
@@ -34,6 +35,38 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
 
   prevNetworkStatus: boolean | null = null;
   isLoading: boolean = false;
+  feedbackForm!: FormGroup;
+
+  justFinished: boolean = false;
+
+  uploadedFiles: any[] = [];
+
+  items = [
+    {
+        icon: 'pi pi-pencil',
+        command: () => {
+        }
+    },
+    {
+        icon: 'pi pi-refresh',
+        command: () => {
+        }
+    },
+    {
+        icon: 'pi pi-trash',
+        command: () => {
+        }
+    },
+    {
+        icon: 'pi pi-upload',
+        routerLink: ['/fileupload']
+    },
+    {
+        icon: 'pi pi-external-link',
+        target: '_blank',
+        url: 'http://angular.io'
+    }
+];
 
   @ViewChild(AppSidebarComponent) appSidebar!: AppSidebarComponent;
 
@@ -47,7 +80,8 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
     private userService: UserService,
     private webService: WebService,
     private messageService: MessageService,
-    private networkService: NetworkService
+    private networkService: NetworkService,
+    private fb: FormBuilder
   ) {
     this.overlayMenuOpenSubscription =
       this.layoutService.overlayOpen$.subscribe(() => {
@@ -185,6 +219,9 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
+    this.feedbackForm = this.fb.group({
+      feedback: ['', [Validators.maxLength(100)]]
+    })
     this.isLoading = true;
 
     this.socketService.connect();
@@ -243,4 +280,11 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
       this.prevNetworkStatus = res;
     });
   }
+
+  onUpload(event:any) {
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+    }
+
+}
 }
