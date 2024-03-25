@@ -59,12 +59,12 @@
     </div>
   </ng-template>
   <form
-        [formGroup]="ratingForm"
-        class="flex gap-3 flex-row align-items-center justify-content-start mb-3"
-      >
-        <p class="text-color-secondary m-0">How would you rate your experience?</p>
-        <p-rating  formControlName="rating"></p-rating>
-      </form>
+    [formGroup]="ratingForm"
+    class="flex gap-3 flex-row align-items-center justify-content-start mb-3"
+  >
+    <p class="text-color-secondary m-0">How would you rate your experience?</p>
+    <p-rating formControlName="rating"></p-rating>
+  </form>
   <p class="text-color-secondary">
     We'd appreciate if you leave us a comment. You can send us a feedback so we
     can understand more 🙌
@@ -83,7 +83,6 @@
       >{{ feedbackForm.get("feedback")?.value.length }}/100</small
     >
   </form>
-  
 
   <ng-template pTemplate="footer">
     <div
