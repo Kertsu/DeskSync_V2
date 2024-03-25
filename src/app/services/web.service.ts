@@ -14,6 +14,10 @@ export class WebService {
     return this.http.post(`${this.baseUserURL}/login`, userData);
   }
 
+  onForgotPassword(email: string){
+    return this.http.post(`${this.baseUserURL}/forgot-password`, {email});
+  }
+
   getSelf() {
     return this.http.get(`${this.baseUserURL}/self`);
   }
