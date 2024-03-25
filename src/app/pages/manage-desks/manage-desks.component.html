@@ -147,6 +147,11 @@
           In total there are {{ desks ? desks.length : 0 }} desks.
         </div>
       </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+            <td class="text-center" colspan="7">No hotdesks found</td>
+        </tr>
+    </ng-template>
     </p-table>
   </div>
   
