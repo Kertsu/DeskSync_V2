@@ -217,6 +217,7 @@ export class ManageDesksComponent {
     this.loading = true;
     const params = this.paramsBuilder.buildParams(event);
     this.webService.getDesks(params).subscribe((res: any) => {
+      console.log(res.desks)
       this.desks = res.desks;
       this.totalRecords = res.totalDocuments;
       this.loading = false;
@@ -242,6 +243,24 @@ export class ManageDesksComponent {
     } else {
       this.selectedDesks = [];
       this.selectAll = false;
+    }
+  }
+
+  getImage(desk:any){
+    
+    return `../../assets/images/map/individual/${desk.deskNumber}.png`
+  }
+
+  getArea(area: number){
+    switch(area){
+      case 1:
+        return 'Workstation'
+      case 2:
+        return 'Left-Wing Main Office'
+      case 3:
+        return 'Right-Wing Main Office'
+      default:
+        return
     }
   }
 }
