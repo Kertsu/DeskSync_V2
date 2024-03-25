@@ -1,8 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ParamsBuilderService } from '../../services/params-builder.service';
 import { WebService } from '../../services/web.service';
 @Component({
@@ -14,6 +13,8 @@ import { WebService } from '../../services/web.service';
 export class ManageUsersComponent {
   userDialog: boolean = false;
 
+  role = new FormControl();
+  status = new FormControl();
   // users: any[] = [
   //   {
   //     id: '65b480cd73497b0eecac836b',
@@ -50,6 +51,7 @@ export class ManageUsersComponent {
   submitted: boolean = false;
 
   roles!: any[];
+  statuses!: any[];
 
   loading: boolean = false;
   totalRecords!: number;
@@ -74,7 +76,6 @@ export class ManageUsersComponent {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private fb: FormBuilder,
-    private http: HttpClient,
     private paramsBuilder: ParamsBuilderService,
     private webService: WebService
   ) {}
@@ -84,6 +85,12 @@ export class ManageUsersComponent {
       { label: 'Admin', value: 'admin' },
       { label: 'User', value: 'user' },
       { label: 'Office Manager', value: 'om' },
+      { label: 'Super Admin', value: 'superadmin' },
+    ];
+
+    this.statuses = [
+      { label: 'Disabled', value: 1 },
+      { label: 'Active', value: 0 },
     ];
   }
 

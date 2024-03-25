@@ -65,30 +65,66 @@
         <th style="width: 4rem">
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
-        <th>Avatar</th>
+        <!-- <th>Avatar</th> -->
         <th pSortableColumn="username">
           Name <p-sortIcon field="username"></p-sortIcon>
         </th>
-        <th pSortableColumn="email" style="min-width: 15rem">
+        <th pSortableColumn="email" pStyleClass="max-w-5rem">
           Email <p-sortIcon field="email"></p-sortIcon>
         </th>
-        <th pSortableColumn="role" style="min-width: 10rem">
+        <th pSortableColumn="role" pStyleClass="max-w-5rem">
           Role <p-sortIcon field="role"></p-sortIcon>
         </th>
         <th pSortableColumn="isDisabled">
           Status <p-sortIcon field="isDisabled"></p-sortIcon>
         </th>
         <th></th>
+        <th></th>
       </tr>
+      <tr>
+        <th style="width: 4rem">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th>
+            <p-columnFilter type="text" field="username"></p-columnFilter>
+        </th>
+        <th>
+            <p-columnFilter type="text" field="email"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter field="role" matchMode="equals" [showMenu]="false">
+              <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                  <p-dropdown [formControl]="role" [options]="roles" (onChange)="filter($event.value)" placeholder="Any" [showClear]="true">
+                      <ng-template let-option pTemplate="item">
+                          <p-tag [value]="option.label"></p-tag>
+                      </ng-template>
+                  </p-dropdown>
+              </ng-template>
+          </p-columnFilter>
+      </th>
+        <th>
+          <p-columnFilter field="isDisabled" matchMode="equals" [showMenu]="false" >
+            <ng-template pTemplate="filter" let-value let-filter="filterCallback" >
+                <p-dropdown [formControl]="status" [options]="statuses" (onChange)="filter($event.value)" placeholder="Any" [showClear]="true">
+                    <ng-template let-option pTemplate="item">
+                        <p-tag [value]="option.label"></p-tag>
+                    </ng-template>
+                </p-dropdown>
+            </ng-template>
+        </p-columnFilter>
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
     </ng-template>
     <ng-template pTemplate="body" let-user>
       <tr>
         <td>
           <p-tableCheckbox [value]="user"></p-tableCheckbox>
         </td>
-        <td>
+        <!-- <td>
           <p-avatar image="{{ user.avatar }}" shape="circle"></p-avatar>
-        </td>
+        </td> -->
         <td>{{ user.username }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.role.charAt(0).toUpperCase() + user.role.slice(1) }}</td>
@@ -103,6 +139,9 @@
             class="p-button-rounded p-button-success mr-2"
             (click)="editUser(user)"
           ></button>
+          
+        </td>
+        <td>
           <button
             pButton
             pRipple
@@ -112,12 +151,18 @@
           ></button>
         </td>
       </tr>
+      
     </ng-template>
     <ng-template pTemplate="summary">
       <div class="flex align-items-center justify-content-between">
         In total there are {{ users ? users.length : 0 }} users.
       </div>
     </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+          <td class="text-center" colspan="7">No users found</td>
+      </tr>
+  </ng-template>
   </p-table>
 </div>
 
