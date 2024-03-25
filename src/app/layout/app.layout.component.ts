@@ -16,7 +16,12 @@ import { WebService } from '../services/web.service';
 import { Message } from 'primeng/api';
 import { MessageService } from '../utils/message.service';
 import { NetworkService } from '../services/network.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-layout',
@@ -36,38 +41,8 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
   prevNetworkStatus: boolean | null = null;
   isLoading: boolean = false;
   feedbackForm!: FormGroup;
-  ratingForm!: FormGroup;
 
   justFinished: boolean = true;
-
-  uploadedFiles: any[] = [];
-
-  items = [
-    {
-        icon: 'pi pi-pencil',
-        command: () => {
-        }
-    },
-    {
-        icon: 'pi pi-refresh',
-        command: () => {
-        }
-    },
-    {
-        icon: 'pi pi-trash',
-        command: () => {
-        }
-    },
-    {
-        icon: 'pi pi-upload',
-        routerLink: ['/fileupload']
-    },
-    {
-        icon: 'pi pi-external-link',
-        target: '_blank',
-        url: 'http://angular.io'
-    }
-];
 
   @ViewChild(AppSidebarComponent) appSidebar!: AppSidebarComponent;
 
@@ -84,6 +59,12 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
     private networkService: NetworkService,
     private fb: FormBuilder
   ) {
+    this.feedbackForm = this.fb.group({
+      feedback: ['', [Validators.maxLength(100)]],
+      rating: new FormControl(null),
+    });
+ 
+
     this.overlayMenuOpenSubscription =
       this.layoutService.overlayOpen$.subscribe(() => {
         if (!this.menuOutsideClickListener) {
@@ -145,7 +126,7 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
     this.messageSubscription = this.messageService
       .onAddMessage()
       .subscribe((res) => {
-        console.log(res)
+        console.log(res);
         this.messages = res;
       });
   }
@@ -220,13 +201,8 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
-    this.feedbackForm = this.fb.group({
-      feedback: ['', [Validators.maxLength(100)]]
-    })
-    this.ratingForm = this.fb.group({
-      rating: new FormControl(null)
-    })
     this.isLoading = true;
+    this.feedbackForm.valueChanges.subscribe(res => console.log(res))
 
     this.socketService.connect();
 
@@ -265,7 +241,7 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
           this.messages = [
             {
               severity: 'info',
-              life:10000,
+              life: 10000,
               summary: 'Your connection is restored',
               icon: 'pi pi-wifi',
             },
@@ -274,7 +250,7 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
           this.messages = [
             {
               severity: 'info',
-              life:10000,
+              life: 10000,
               summary: 'You are currently offline',
               icon: 'pi pi-globe',
             },
@@ -285,10 +261,7 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
     });
   }
 
-  onUpload(event:any) {
-    for(let file of event.files) {
-        this.uploadedFiles.push(file);
-    }
-
-}
+  onSubmit(){
+    alert(JSON.stringify(this.feedbackForm.value ))
+  }
 }

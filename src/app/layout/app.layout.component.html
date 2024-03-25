@@ -58,49 +58,61 @@
       <span class="text-xl" id="logo-text">DeskSync | Feedback</span>
     </div>
   </ng-template>
-  <form
-    [formGroup]="ratingForm"
-    class="flex gap-3 flex-row align-items-center justify-content-start mb-3"
-  >
-    <p class="text-color-secondary m-0">How would you rate your experience?</p>
-    <p-rating formControlName="rating"></p-rating>
-  </form>
-  <p class="text-color-secondary">
-    We'd appreciate if you leave us a comment. You can send us a feedback so we
-    can understand more 🙌
-  </p>
-  <form class="flex flex-column gap-1" [formGroup]="feedbackForm">
-    <textarea
-      placeholder="What's on your mind?"
-      class="w-full"
-      rows="10"
-      cols="30"
-      id="feedback"
-      pInputTextarea
-      formControlName="feedback"
-    ></textarea>
-    <small style="align-self: end"
-      >{{ feedbackForm.get("feedback")?.value.length }}/100</small
+  <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" class="w-full flex flex-column gap-3 jusitfy-content-start align-items-start">
+    <div
+      class="flex gap-3 flex-row align-items-center justify-content-start mb-3"
     >
-  </form>
+      <p class="text-color-secondary m-0">
+        How would you rate your experience?
+      </p>
+      <p-rating formControlName="rating"></p-rating>
+    </div>
+    <p class="text-color-secondary">
+      We'd appreciate if you leave us a comment. You can send us a feedback so
+      we can understand more 🙌
+    </p>
+    <div class="w-full flex flex-column gap-1">
+      <textarea
+        placeholder="What's on your mind?"
+        class="w-full"
+        rows="10"
+        cols="30"
+        id="feedback"
+        pInputTextarea
+        formControlName="feedback"
+      ></textarea>
+      <small style="align-self: end"
+        >{{ feedbackForm.get("feedback")?.value.length }}/100</small
+      >
+    </div>
 
-  <ng-template pTemplate="footer">
+    <!-- <ng-template pTemplate="footer">
     <div
       class="flex flex-column justify-content-center align-items-start gap-3 w-full"
     >
-      <!-- <p-fileUpload class="w-full" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000">
+      <p-fileUpload class="w-full" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000">
       <ng-template pTemplate="content">
           <ul *ngIf="uploadedFiles.length">
               <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
           </ul>
       </ng-template>
-  </p-fileUpload> -->
+  </p-fileUpload>
       <p-button
         class="w-full"
         label="Submit"
         pAutoFocus
+        type="submit"
         [autofocus]="true"
       ></p-button>
     </div>
-  </ng-template>
+  </ng-template> -->
+  <button
+  pButton
+  class="py-2 px-3 border-round p-button-info max-w-max align-self-end"
+  label="Submit"
+  type="submit"
+  [autofocus]="true"
+  pAutoFocus
+></button>
+  </form>
 </p-dialog>
