@@ -42,10 +42,6 @@
               {"input" :"src/app/themes/bootstrap4-dark-blue.css", "bundleName": "bootstrap4-dark-blue", "inject": false},
               {"input" :"src/app/themes/bootstrap4-light-purple.css", "bundleName": "bootstrap4-light-purple", "inject": false},
               {"input" :"src/app/themes/bootstrap4-dark-purple.css", "bundleName": "bootstrap4-dark-purple", "inject": false},
-              {"input" :"src/app/themes/md-light-indigo.css", "bundleName": "md-light-indigo", "inject": false},
-              {"input" :"src/app/themes/md-dark-indigo.css", "bundleName": "md-dark-indigo", "inject": false},
-              {"input" :"src/app/themes/md-light-deeppurple.css", "bundleName": "md-light-deeppurple", "inject": false},
-              {"input" :"src/app/themes/md-dark-deeppurple.css", "bundleName": "md-dark-deeppurple", "inject": false},
               {"input" :"src/app/themes/tailwind-light.css", "bundleName": "tailwind-light", "inject": false}
             ],
             "scripts": ["src/assets/imageMapResizer.min.js"]

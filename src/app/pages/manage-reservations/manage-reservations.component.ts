@@ -187,4 +187,8 @@ export class ManageReservationsComponent {
     }
     return id;
   }
+
+  getImage(reservation:any){
+    return `../../assets/images/map/individual/${reservation.deskNumber}.png`
+  }
 }

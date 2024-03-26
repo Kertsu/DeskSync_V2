@@ -101,7 +101,7 @@
             </div>
           </td>
           <td>{{ reservation.deskNumber }}</td>
-          <td>--</td>
+          <td><img class="h-4rem shadow-4" style="object-fit: contain;" [src]="getImage(reservation)" alt="Hotdesk"></td>
           <td>{{ reservation.date | date : "mediumDate" }}</td>
           <td>{{ reservation.startTime | date : "shortTime" }}</td>
         <td>{{ reservation.endTime | date : "shortTime" }}</td>
